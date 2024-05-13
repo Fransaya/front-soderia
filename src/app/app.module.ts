@@ -24,12 +24,14 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './core/components/header/header.component';
+import { FooterComponent } from './core/components/footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,

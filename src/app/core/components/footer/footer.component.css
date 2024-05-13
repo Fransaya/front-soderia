@@ -1,0 +1,16 @@
+.section-footer{
+    width: 100%;
+    background-color: var(--secondary-color) !important;
+    color: white;
+    justify-content: center;
+    position: relative;
+    bottom: 0px;
+    
+}
+
+.container-footer{
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
