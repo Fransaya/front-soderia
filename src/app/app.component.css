@@ -1,3 +1,15 @@
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.container-content {
+    z-index: 1; /* Asegura que el contenido esté por encima del footer */
+}
+
 .footer {
-    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 0; /* Coloca el footer detrás del contenido */
 }
