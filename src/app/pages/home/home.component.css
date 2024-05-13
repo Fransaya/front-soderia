@@ -1,0 +1,23 @@
+.section-content{
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.card-info1{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 900px;
+    top: 50px;
+}
+
+.container-sub-inf{
+    display: flex;
+    position: relative;
+}
+
+.container-img{
+    display: flex;
+    justify-content: center;
+}
