@@ -16,6 +16,7 @@ import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
+import { TimelineModule } from 'primeng/timeline';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -49,7 +50,8 @@ import { HeaderComponent } from './core/components/header/header.component';
         RouterOutlet,
         RouterModule,
         AppRoutingModule,
-        CardModule
+        CardModule,
+        TimelineModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]

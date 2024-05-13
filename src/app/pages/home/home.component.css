@@ -2,6 +2,14 @@
     display: flex;
     justify-content: center;
     position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.p-card,.p-card-content ,.p-card-body{
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    color: white;
 }
 
 .card-info1{
@@ -10,14 +18,41 @@
     position: relative;
     max-width: 900px;
     top: 50px;
+    background-color: var(--secondary-color);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
 }
 
 .container-sub-inf{
     display: flex;
     position: relative;
+    color: white;
+}
+
+.container-imgs{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: center;
 }
 
 .container-img{
     display: flex;
+    justify-content: center;
+}
+
+.card-text{
+    color:white;
+    font-size: 18px;
+    margin: 25px;
+    letter-spacing: 0.8px; /* Espaciado de caracteres */
+    line-height: 1.2; 
+}
+
+/*************************** LINEA DEL TIEMPO ***************************/
+.timeline-content{
+    display: flex;
+    position: relative;
+    top: 120px;
     justify-content: center;
 }
