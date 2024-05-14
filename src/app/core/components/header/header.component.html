@@ -1,24 +1,21 @@
-<div class="container-header">
-    <header class="header">
+<nav class="navbar bg-body-tertiary container">
+    <div class="header">
         <div class="logo">
-            <img src="../../../../assets/logo-prueba.jpg" style="width: 40px; height: 45px; border-radius: 50%;" class="img-style" alt="Logo de la sodería">
+            <img src="../../../../assets/logo-prueba.jpg" style="width: 40px; height: 40px; border-radius: 50%;" class="img-style" alt="Logo de la sodería">
+            <div class="name" (click)="rutaComponent('home')">
+                <h3>Aguas de Mesa Delfina</h3>
+            </div>
         </div>
         <div class="container-pages">
-            <div class="name" (click)="rutaComponent('home')">
-                <h2>Aguas de Mesa Delfina</h2>
-            </div>
             <div class="inicio" (click)="rutaComponent('home')">
                 <h4>Inicio</h4>
             </div>
             <div class="contacto" (click)="rutaComponent('contacto')">
                 <h4>Contactanos</h4>
             </div>
-            
         </div>
         <div class="button">
             <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
         </div>
-    </header>
-</div>
-    
-
+    </div>
+</nav>

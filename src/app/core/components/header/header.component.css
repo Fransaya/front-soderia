@@ -1,100 +1,56 @@
-.container-header{
+.container{
     display: flex;
-    width: 100%;
-}
-.header {
-    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    gap: 25px;
-    width: 100%;
+    width: 60%;
     background-color: var(--color-primaty);
     border-radius: 15px;
     color: white;
+    margin: 0 auto;
 }
 
-.logo img {
-    width: 80px; 
-    height: auto; /* Ajusta la altura automáticamente */
-}
-
-.container-pages {
+.logo{
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 25px; 
-    margin-top: 10px; 
+    flex-direction: row;
     align-items: center;
+    right: 50px;
 }
 
-.name,.inicio,.contacto{
+.name{
+    margin-left: 10px;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.container-pages{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    gap: 15px;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+
+.inicio, .contacto{
+    text-decoration: none; 
     cursor: pointer;
-    transition: border-bottom 0.5s ease-in-out;
+    transition: width 0.3s ease; 
 }
 
-.name:hover,.inicio:hover,.contacto:hover{
+.inicio :hover, .contacto:hover{
     text-decoration: underline;
-    transform: scale(1.1);
-}
-
-.button button {
-    padding: 8px 16px; /* Ajusta el padding del botón */
-    font-size: 16px; /* Tamaño de fuente más pequeño para dispositivos móviles */
-}
-
-.logo {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    border-radius: 50%;
-}
-
-.img-style {
-    padding: 0;
-    margin: 0;
-    border-radius: 50%;
-    height: 40px; /* Ajusta el tamaño de la imagen */
-    width: 40px; /* Ajusta el tamaño de la imagen */
-    object-fit: cover;
-}
-
-.card-inf01 {
-    display: flex;
-    width: 100%; /* Ajusta el ancho al 100% en dispositivos móviles */
-    justify-content: start;
-}
-
-/* Estilos para dispositivos móviles */
-@media only screen and (max-width: 767px) {
-    .container-section {
-        border-radius: 0; /* Elimina el borde redondeado en dispositivos móviles */
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
-
-    .header {
-        padding: 5px;
-        display: flex;
-        flex-direction: row;
-        width: 350px; 
-    }
-
-    .logo img {
-        width: 60px; /* Ajusta el tamaño del logo para dispositivos móviles */
-    }
-
-    .container-pages {
-        gap: 10px; /* Reduce el espacio entre elementos */
-    }
-
-    .button button {
-        padding: 6px 12px; /* Ajusta el padding del botón para dispositivos móviles */
-        font-size: 14px; /* Tamaño de fuente más pequeño para dispositivos móviles */
-    }
-
-    .img-style {
-        height: 25px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
-        width: 25px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
-    }
 }
