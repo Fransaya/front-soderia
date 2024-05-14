@@ -1,40 +1,53 @@
 
+.section-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;    
+}
+
 .section-content{
     display: flex;
-    justify-content: center;
     position: relative;
-    margin: 0;
+    justify-content: center;
+    bottom: 15px;
+    margin: 0 auto;
+    margin-bottom:15px ;
+    flex-wrap: wrap;
     padding: 0;
     flex:1;
 }
 
 
 .p-card,.p-card-content ,.p-card-body{
-    background-color: var(--secondary-color);
+    background-color: var(--gray-color);
     border-radius: 15px;
-    color: white;
+    color: var(--color-primaty);
 }
 
 .card-info1{
     display: flex;
     justify-content: center;
     position: relative;
-    max-width: 900px;
+    max-width: 70%;
     top: 50px;
     background-color: var(--secondary-color);
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 0px 10px rgba(168, 168, 168, 0.2);
     border-radius: 15px;
+    color: var(--color-primaty);
 }
 
 .container-sub-inf{
     display: flex;
     position: relative;
     color: white;
+    max-width: 100%;
 }
 
 .container-imgs{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
 }
@@ -45,7 +58,7 @@
 }
 
 .card-text{
-    color:white;
+    color:var(--color-primaty);
     font-size: 18px;
     margin: 25px;
     letter-spacing: 0.8px; /* Espaciado de caracteres */
@@ -56,6 +69,71 @@
 .timeline-content{
     display: flex;
     position: relative;
-    top: 120px;
+    top:50px;
+    margin: 0 auto;
+    margin-bottom: 15px;
     justify-content: center;
+}
+
+.icono-timeline{
+    font-size: 30px;
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+/* Estilos para pantallas pequeñas (móviles) */
+@media only screen and (max-width: 768px) {
+    .section-container {
+        display: flex;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        max-width: 800px;
+        position: relative;
+        justify-content: center;
+    }
+
+    .section-content, .card-info1, .timeline-content {
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-info1 {
+        margin-top: 20px; /* Reduce el margen superior en pantallas pequeñas */
+    }
+
+    .container-imgs {
+        flex-direction: column; /* Mostrar imágenes una debajo de la otra */
+    }
+
+    .container-img {
+        width: 100%; /* Ocupar todo el ancho disponible */
+        margin: 10px; /* Agregar margen entre imágenes */
+    }
+
+    .card-text {
+        text-align: center; /* Centrar texto */
+    }
+}
+
+/* Estilos para pantallas medianas (tabletas) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .section-container {
+        max-width: 700px; /* Limitar ancho en pantallas medianas */
+    }
+
+    .container-imgs {
+        justify-content: space-between; /* Distribuir imágenes de manera uniforme */
+    }
+}
+
+/* Estilos para pantallas grandes (desktops) */
+@media only screen and (min-width: 1025px) {
+    .section-container {
+        max-width: 1200px; /* Limitar ancho en pantallas grandes */
+    }
+
+    .container-imgs {
+        justify-content: space-around; /* Distribuir imágenes de manera uniforme */
+    }
 }

@@ -1,17 +1,24 @@
-<section class="container-section">
+<div class="container-header">
     <header class="header">
         <div class="logo">
             <img src="../../../../assets/logo-prueba.jpg" style="width: 40px; height: 45px; border-radius: 50%;" class="img-style" alt="Logo de la sodería">
         </div>
-        <div class="inicio">
-            <h4>Inicio</h4>
-        </div>
-        <div class="contacto">
-            <h4>Contactanos</h4>
+        <div class="container-pages">
+            <div class="name" (click)="rutaComponent('home')">
+                <h2>Aguas de Mesa Delfina</h2>
+            </div>
+            <div class="inicio" (click)="rutaComponent('home')">
+                <h4>Inicio</h4>
+            </div>
+            <div class="contacto" (click)="rutaComponent('contacto')">
+                <h4>Contactanos</h4>
+            </div>
+            
         </div>
         <div class="button">
-            <button pButton type="button" label="Ingresar"></button>
+            <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
         </div>
     </header>
-</section>
+</div>
+    
 

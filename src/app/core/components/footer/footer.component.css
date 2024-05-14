@@ -1,10 +1,11 @@
 .section-footer{
     width: 100%;
-    background-color: var(--secondary-color) !important;
+    background-color: var(--color-primaty) !important;
     color: white;
     justify-content: center;
     position: relative;
     bottom: 0px;
+    border-radius: 10px;
     
 }
 

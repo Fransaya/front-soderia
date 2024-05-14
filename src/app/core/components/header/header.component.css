@@ -1,65 +1,100 @@
-.container-section{
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-primaty);
-    border-radius: 25px;
-    max-width: 800px;
-    margin: 0 auto;
-    justify-content: center;
-
+.container-header{
+    display: flex;
+    width: 100%;
 }
-
 .header {
     display: flex;
-    justify-content:space-evenly;
     align-items: center;
-    padding: 10px;
-    margin: 0;
+    justify-content: space-evenly;
+    gap: 25px;
+    width: 100%;
     background-color: var(--color-primaty);
     border-radius: 15px;
     color: white;
 }
 
 .logo img {
-    width: 100px; /* Ajusta el ancho según el tamaño de tu logo */
+    width: 80px; 
+    height: auto; /* Ajusta la altura automáticamente */
 }
 
-.inicio, .contacto{
+.container-pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 25px; 
+    margin-top: 10px; 
+    align-items: center;
+}
+
+.name,.inicio,.contacto{
     cursor: pointer;
+    transition: border-bottom 0.5s ease-in-out;
+}
+
+.name:hover,.inicio:hover,.contacto:hover{
+    text-decoration: underline;
+    transform: scale(1.1);
 }
 
 .button button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #007bff; /* Cambia el color de fondo según tu esquema de colores */
-    color: #fff; /* Cambia el color del texto según tu esquema de colores */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 8px 16px; /* Ajusta el padding del botón */
+    font-size: 16px; /* Tamaño de fuente más pequeño para dispositivos móviles */
 }
 
-.button button:hover {
-    background-color: #0056b3; /* Cambia el color de fondo del botón al pasar el cursor */
-}
-
-.logo{
+.logo {
     margin: 0;
     padding: 0;
     display: flex;
     border-radius: 50%;
 }
 
-img .img-style{
+.img-style {
     padding: 0;
     margin: 0;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    object-fit: contain;
+    height: 40px; /* Ajusta el tamaño de la imagen */
+    width: 40px; /* Ajusta el tamaño de la imagen */
+    object-fit: cover;
 }
 
-.card-inf01{
+.card-inf01 {
     display: flex;
-    width: 800px;
+    width: 100%; /* Ajusta el ancho al 100% en dispositivos móviles */
     justify-content: start;
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 767px) {
+    .container-section {
+        border-radius: 0; /* Elimina el borde redondeado en dispositivos móviles */
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .header {
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        width: 350px; 
+    }
+
+    .logo img {
+        width: 60px; /* Ajusta el tamaño del logo para dispositivos móviles */
+    }
+
+    .container-pages {
+        gap: 10px; /* Reduce el espacio entre elementos */
+    }
+
+    .button button {
+        padding: 6px 12px; /* Ajusta el padding del botón para dispositivos móviles */
+        font-size: 14px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+
+    .img-style {
+        height: 25px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
+        width: 25px; /* Ajusta el tamaño de la imagen para dispositivos móviles */
+    }
 }

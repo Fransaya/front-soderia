@@ -3,16 +3,35 @@
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
-:root{
-    --color-primaty:#1E61C4;
-    --secondary-color: #007bff;
-    --green-color:#28a745;
-    --gray-color:#f8f9fa;
 
+
+:root{
+    --color-primaty:#1c5560;
+    --secondary-color: #001f36;
+    --green-color:#79ae92;
+    --gray-color:#f8f9fa;
+    --backgroud-color:#fbffcd;
+    --black-color:hsl(0, 0%, 96%);
+
+}
+body, html {
+    margin: 0;
+    padding: 0;
 }
 
 body {
     display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana visible */
+    width: 100%;
+    justify-content: center;
+    background-color: var(--black-color);
+}
+
+@media only screen and (max-width: 768px) {
+    body,html{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
 }
