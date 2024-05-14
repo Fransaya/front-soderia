@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit{
 
+  navbarOpen = false;
+
+
   ngOnInit(): void {
     
   }
@@ -18,5 +21,10 @@ export class HeaderComponent implements OnInit{
 
   public rutaComponent(ruta:string){
     this.router.navigate([ruta])
+  }
+
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 }

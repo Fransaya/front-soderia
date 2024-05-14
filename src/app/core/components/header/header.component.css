@@ -1,56 +1,54 @@
-.container{
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
+.navbar{
     background-color: var(--color-primaty);
     border-radius: 15px;
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.contaier{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
     margin: 0 auto;
+    color:  white;
 }
 
-.logo{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    right: 50px;
-}
-
-.name{
-    margin-left: 10px;
-}
-
-.header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-}
-
-.container-pages{
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
+.img-soderia{
     margin-right: 15px;
-    gap: 15px;
 }
 
-.button{
+.navbar-collapse{
     display: flex;
+    justify-content: end;
     align-items: center;
-    margin-left: 5%;
+};
+
+.navbar-nav{
+    display: flex;
 }
 
-.inicio, .contacto{
-    text-decoration: none; 
+a{
+    margin: 15px;
     cursor: pointer;
-    transition: width 0.3s ease; 
+    transition: all 0.8s ease-in-out;
 }
 
-.inicio :hover, .contacto:hover{
+a:hover{
     text-decoration: underline;
+}
+
+.navbar-brand{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    color:  white;
+}
+
+.nav-link{
+    display: flex;
+    justify-content: center;
+    color: white;
 }

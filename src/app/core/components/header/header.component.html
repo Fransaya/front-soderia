@@ -1,21 +1,28 @@
-<nav class="navbar bg-body-tertiary container">
-    <div class="header">
-        <div class="logo">
-            <img src="../../../../assets/logo-prueba.jpg" style="width: 40px; height: 40px; border-radius: 50%;" class="img-style" alt="Logo de la sodería">
-            <div class="name" (click)="rutaComponent('home')">
-                <h3>Aguas de Mesa Delfina</h3>
-            </div>
-        </div>
-        <div class="container-pages">
-            <div class="inicio" (click)="rutaComponent('home')">
-                <h4>Inicio</h4>
-            </div>
-            <div class="contacto" (click)="rutaComponent('contacto')">
-                <h4>Contactanos</h4>
-            </div>
-        </div>
-        <div class="button">
+
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../../../../assets/logo-prueba.jpg" style="width: 35px; height: 35px; border-radius: 50%;" class="img-soderia" alt="" srcset="">
+            <h4>Aguas de Mesa Delfina</h4>
+        </a>
+        <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                <a class="nav-link" href="#">Inicio</a>
+                </li>
+        
+                <li class="nav-item">
+                <a class="nav-link" href="#">Contactanos</a>
+                </li>
+                
+            </ul>
             <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
+
         </div>
     </div>
+    
 </nav>
