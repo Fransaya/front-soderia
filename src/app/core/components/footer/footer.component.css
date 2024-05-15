@@ -1,6 +1,6 @@
 .section-footer{
     width: 100%;
-    background-color: var(--color-primaty) !important;
+    background-color: var(--secondary-color) !important;
     color: white;
     justify-content: center;
     position: relative;

@@ -1,0 +1,50 @@
+<section class="section-container">
+    <div class="container-form">
+        <div class="form-contact">
+            <form [formGroup]="contactoForm" (ngSubmit)="enviarForm()">
+                <div class="group-input">
+                  <label for="nombre">Nombre y Apellido</label>
+                  <input type="text" name="nombre" id="nombre" formControlName="nombre">
+                  <div *ngIf="contactoForm.get('nombre')?.invalid && contactoForm.get('nombre')?.touched" class="error">
+                    Nombre es requerido
+                  </div>
+                </div>
+                <div class="group-input">
+                  <label for="correo">Correo electrónico</label>
+                  <input type="email" name="correo" id="correo" formControlName="correo">
+                  <ng-container *ngIf="contactoForm.get('correo') as correoCtrl">
+                    <div *ngIf="correoCtrl.invalid && correoCtrl.touched" class="error">
+                      <div *ngIf="correoCtrl.errors?.['required']">Correo es requerido</div>
+                      <div *ngIf="correoCtrl.errors?.['email']">Formato de correo inválido</div>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="group-input">
+                  <label for="celular">Celular</label>
+                  <input type="tel" name="celular" id="celular" formControlName="celular">
+                  <ng-container *ngIf="contactoForm.get('celular') as celularCtrl">
+                    <div *ngIf="celularCtrl.invalid && celularCtrl.touched" class="error">
+                      <div *ngIf="celularCtrl.errors?.['required']">Celular es requerido</div>
+                      <div *ngIf="celularCtrl.errors?.['pattern']">Formato de celular inválido</div>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="group-input">
+                  <label for="mensaje">Escribe tu duda</label>
+                  <textarea name="mensaje" id="mensaje" formControlName="mensaje"></textarea>
+                  <div *ngIf="contactoForm.get('mensaje')?.invalid && contactoForm.get('mensaje')?.touched" class="error">
+                    Mensaje es requerido
+                  </div>
+                </div>
+                <div class="container-btn">
+                    <button type="submit" class="p-button">Enviar</button>
+                </div>
+              </form>
+              
+        </div>
+        <div class="map-container">
+        </div>
+    </div>
+</section>
+    
+

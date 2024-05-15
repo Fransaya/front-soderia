@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -17,6 +18,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -26,6 +28,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 
 @NgModule({
     declarations: [
@@ -33,10 +36,12 @@ import { LoginComponent } from './pages/login/login.component';
         HomeComponent,
         HeaderComponent,
         FooterComponent,
-        LoginComponent
+        LoginComponent,
+        ContactoComponent
     ],
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         FormsModule,
         TableModule,
@@ -55,7 +60,8 @@ import { LoginComponent } from './pages/login/login.component';
         RouterModule,
         AppRoutingModule,
         CardModule,
-        TimelineModule
+        TimelineModule,
+        FloatLabelModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
