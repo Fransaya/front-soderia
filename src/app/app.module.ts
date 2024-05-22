@@ -19,6 +19,7 @@ import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { CarouselModule } from 'primeng/carousel';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -61,7 +62,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
         AppRoutingModule,
         CardModule,
         TimelineModule,
-        FloatLabelModule
+        FloatLabelModule,
+        CarouselModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]

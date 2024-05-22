@@ -1,7 +1,47 @@
-<div class="container">
-    <div class="container-content">
-        <div class="form-container">
-            
+<div class="section-container">
+    <div class="content-wrapper">
+        <div class="container-form">
+            <form [formGroup]="contactoForm" (submit)="enviarForm()">
+                <div class="group-input">
+                    <label for="nombre">Nombre y Apellido</label>
+                    <p-floatLabel>
+                        <input id="nombre" type="text" pInputText formControlName="nombre" class="form-control" />
+                    </p-floatLabel>
+                    <div *ngIf="contactoForm.get('nombre')?.invalid && contactoForm.get('nombre')?.touched" class="error">
+                        El nombre es requerido.
+                    </div>
+                </div>
+                <div class="group-input">
+                    <label for="correo">Correo Electrónico</label>
+                    <p-floatLabel>
+                        <input id="correo" type="email" pInputText formControlName="correo" class="form-control" />
+                    </p-floatLabel>
+                    <div *ngIf="contactoForm.get('correo')?.invalid && contactoForm.get('correo')?.touched" class="error">
+                        <div *ngIf="contactoForm.get('correo')?.errors?.['required']">El correo es requerido.</div>
+                        <div *ngIf="contactoForm.get('correo')?.errors?.['email']">El correo debe ser válido.</div>
+                    </div>
+                </div>
+                <div class="group-input">
+                    <label for="celular">Celular</label>
+                    <p-floatLabel>
+                        <input id="celular" type="text" pInputText formControlName="celular" class="form-control" />
+                    </p-floatLabel>
+                    <div *ngIf="contactoForm.get('celular')?.invalid && contactoForm.get('celular')?.touched" class="error">
+                        <div *ngIf="contactoForm.get('celular')?.errors?.['required']">El celular es requerido.</div>
+                        <div *ngIf="contactoForm.get('celular')?.errors?.['pattern']">El celular debe tener 10 dígitos.</div>
+                    </div>
+                </div>
+                <div class="group-input">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" class="form-control" formControlName="mensaje"></textarea>
+                    <div *ngIf="contactoForm.get('mensaje')?.invalid && contactoForm.get('mensaje')?.touched" class="error">
+                        El mensaje es requerido.
+                    </div>
+                </div>
+                <div class="container-btn">
+                    <button type="submit" class="p-button" [disabled]="contactoForm.invalid">Enviar</button>
+                </div>
+            </form>
         </div>
         <div class="container-maps">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3368.5184311179314!2d-63.28035672475853!3d-32.405268473821245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95cc4348f21fde11%3A0xb92c2fd31891b457!2sLos%20Talas%20321%2C%20Villa%20Mar%C3%ADa%2C%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1716031006977!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

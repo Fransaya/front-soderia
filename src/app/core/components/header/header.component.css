@@ -1,15 +1,23 @@
-<<<<<<< HEAD
-
+.container{
+    display: flex;
+    justify-content: center;
+}
 
 .navbar {
     background-color: var(--color-primaty);
     border-radius: 15px;
     margin: 10px;
     color: white;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    position: fixed;
+    z-index: 5;
 }
 
-.nav-style{
+.nav-style {
     background-color: var(--color-primaty);
+    justify-content: center;
 }
 
 .navbar-brand {
@@ -72,65 +80,6 @@
 .btn-outline-success:hover {
     background-color: white;
     color: var(--color-primaty);
-=======
-.container{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    flex-direction: row;
-    top: 10px;
-    padding: 0;
-    background-color: var(--secondary-color);
-    border-radius: 15px;
-    max-width: 800px
 }
 
-.navbar{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
 
-.navbar-header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-a,.navbar-brand{
-    position: relative;
-    color: white;
-    align-items: center;
-    top: 3px;
-}
-
-a{
-    color: white;
-}
-
-.container-list{
-    display: flex;
-    position: relative;
-    justify-content: space-around;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-}
-
-.container-fluid{
-    display: flex;
-    flex-direction: row;
-    max-width: 600px;
-    justify-content: space-between;
-    gap: 15px;
-
-}
-
-.nav{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    justify-content: space-around;
->>>>>>> origin/main
-}

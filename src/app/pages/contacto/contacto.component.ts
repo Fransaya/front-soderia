@@ -1,22 +1,13 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
->>>>>>> origin/main
 
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
-<<<<<<< HEAD
   styleUrl: './contacto.component.css'
 })
-export class ContactoComponent {
-=======
-  styleUrl: './contacto.component.css',
-  encapsulation: ViewEncapsulation.Emulated
-})
+
 export class ContactoComponent implements OnInit {
 
   contactoForm: FormGroup= this.fb.group({})
@@ -44,8 +35,5 @@ export class ContactoComponent implements OnInit {
 
     }
   }
-
-
->>>>>>> origin/main
 
 }

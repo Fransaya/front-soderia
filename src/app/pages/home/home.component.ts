@@ -10,9 +10,41 @@ import { ViewEncapsulation } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  imagenes: any[] = [
+    {nombre:'sodero10.jpg'},
+    {nombre: 'sodero11.jpg'},
+    {nombre: 'sodero12.jpg'},
+    {nombre: 'sodero4.jpg'},
+    {nombre: 'sodero5.jpg'},
+    {nombre: 'sodero6.jpg'},
+    {nombre: 'sodero8.jpg'},
+    {nombre: 'sodero9.jpg'},
+    {nombre: 'soder7.jpg'}
+  ];
+
+  responsiveOptions: any[] | undefined;
+
   events: any[];
 
   ngOnInit(): void {
+
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 3,
+        numScroll: 1
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 1,
+        numScroll: 1
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1
+    }
+  ];
 
   }
 

@@ -1,50 +1,58 @@
 <section class="section-container">
-    <div class="d-flex mt-25 section-content ">
-                <p-card header="Historia" class="card-info1" >
-                    <div class="row g-0 mb-5 card1">
-                        <div class="container-imgs">
-                            <div class="col-md-4 container-img d-flex justify-content-center align-items-center">
-                                <img src="../../../assets/sodero3.webp" style="max-width: 280px; max-height: 200px; border-radius: 15px;" class="img-fluid rounded-end card img-soderia1" alt="...">
+    <div class="section-content">
+        <p-card header="Historia" class="card-info1">
+            <div class="row g-0 mb-5 card1">
+                <div class="container-imgs">
+                    <p-carousel 
+                        [value]="imagenes" 
+                        [numVisible]="3" 
+                        [numScroll]="1" 
+                        [responsiveOptions]="responsiveOptions"
+                        [circular]="true"
+                        autoplayInterval="3000"
+                        class="fixed-carousel">
+                        <ng-template let-product pTemplate="item">
+                            <div class="border-1 surface-border border-round m-2 p-3">
+                                <div class="mb-3">
+                                    <div class="relative mx-auto">
+                                        <img 
+                                            src="../../../assets/{{product.nombre }}" 
+                                            [alt]="product.nombre" 
+                                            class="carousel-image border-round" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4 container-img d-flex justify-content-center align-items-center">
-                                <img src="../../../assets/1563567237_1239541.webp" style="max-width: 280px; max-height: 200px; border-radius: 15px;" class="img-fluid rounded-end card img-soderia1" alt="...">
-                            </div>
-                            <div class="col-md-4 container-img d-flex justify-content-center align-items-center">
-                                <img src="../../../assets/fabrica-soderia.webp" style="max-width: 280px; max-height: 200px; border-radius: 15px;" class="img-fluid rounded-end card img-soderia1" alt="...">
-                            </div>
-                        </div>
-                        <div class="col-md-8 container-sub-inf">
-                            <div class="card-body">
-                                <p class="card-text">Descubre la historia de Aguas de Mesa Delfina, una sodería con raíces familiares arraigadas en Villa Maria desde hace más de 15 años. Fundada por Mariano Donayo, quien heredó el legado de su padre, la sodería nació de la necesidad en el barrio y la ausencia de un repartidor de soda.</p>
-                            </div>
-                        </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+                <div class="col-md-8 container-sub-inf">
+                    <div class="card-body">
+                        <p class="card-text">
+                            Descubre la historia de Aguas de Mesa Delfina, una sodería con raíces familiares arraigadas en Villa Maria desde hace más de 15 años. Fundada por Mariano Donayo, quien heredó el legado de su padre, la sodería nació de la necesidad en el barrio y la ausencia de un repartidor de soda.
+                        </p>
                     </div>
-                </p-card>
+                </div>
+            </div>
+        </p-card>
     </div>
     
-        <div class="timeline-content">
-            <p-timeline [value]="events" align="alternate" styleClass="customized-timeline" class="background-card">
-                <ng-template pTemplate="marker" let-event>
-                    <span 
-                        class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1">
-                        <i [class]="event.icon" class="icono-timeline"></i>
-                    </span>
-                </ng-template>
-                <ng-template pTemplate="content" let-event >
-                    <p-card [header]="event.status" [subheader]="event.date" >
-                        <img 
-                            *ngIf="event.image" 
-                            [alt]="event.name"
-                            width="200" 
-                            class="shadow-2" />
-                        <p>
-                            {{event.content}}
-                        </p>
-                    </p-card>
-                </ng-template>
-            </p-timeline>
-        </div>
-    </section>
-
-
-
+    <div class="timeline-content">
+        <p-timeline [value]="events" align="alternate" styleClass="customized-timeline" class="background-card">
+            <ng-template pTemplate="marker" let-event>
+                <span class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1">
+                    <i [class]="event.icon" class="icono-timeline"></i>
+                </span>
+            </ng-template>
+            <ng-template pTemplate="content" let-event>
+                <p-card [header]="event.status" [subheader]="event.date">
+                    <img 
+                        *ngIf="event.image" 
+                        [alt]="event.name"
+                        width="200" 
+                        class="shadow-2" />
+                    <p>{{event.content}}</p>
+                </p-card>
+            </ng-template>
+        </p-timeline>
+    </div>
+</section>

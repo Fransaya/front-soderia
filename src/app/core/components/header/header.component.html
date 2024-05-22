@@ -1,72 +1,24 @@
-<<<<<<< HEAD
-<nav class="navbar navbar-expand-lg nav-class">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="assets/logo-prueba.jpg" alt="Logo" class="img-soderia">
-            <h4 class="brand-name">Aguas de Mesa Delfina</h4>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto">Contactanos</a>
-                </li>
-            </ul>
-            <button class="btn btn-outline-success" type="button" (click)="rutaComponent('ingresar')">Ingresar</button>
-        </div>
-    </div>
-</nav>
-=======
-<!-- <div class="container">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../../../../assets/logo-prueba.jpg" style="width: 35px; height: 35px; border-radius: 50%;" class="img-soderia" alt="" srcset="">
-                    <h4>Aguas de Mesa Delfina</h4>
-                </a>
-                <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contactanos</a>
-                        </li>
-                    </ul>
-                    <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
-                </div>
-            </div>
-        </nav>        
-</div> -->
 <div class="container">
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="../../../../assets/logo-prueba.jpg" style="width: 35px; height: 35px; border-radius: 50%; margin-right: 5px;" alt="" srcset="">
-                <a class="navbar-brand" href="#">Aguas de Mesa Delfina</a>
-            </div>
-            <div class="container-list">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Inicio</a></li>
-                    
-                    <li><a href="/contacto">Contacto</a></li>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../../../assets/logo-prueba.jpg" style="width: 35px; height: 35px; border-radius: 50%;" class="img-soderia" alt="" srcset="">
+                <h4>Aguas de Mesa Delfina</h4>
+            </a>
+            <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/contacto">Contactanos</a>
+                    </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <button type="button" class="btn btn-outline-light bnt-login"><i class="pi pi-unlock icon" style="margin-right: 5px;"></i>Ingresar</button>
-                </ul>
+                <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
             </div>
-            
         </div>
     </nav>
 </div>
-
->>>>>>> origin/main
