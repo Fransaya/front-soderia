@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -17,6 +18,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -39,6 +41,7 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
     ],
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
         BrowserAnimationsModule,
         FormsModule,
         TableModule,
@@ -57,7 +60,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
         RouterModule,
         AppRoutingModule,
         CardModule,
-        TimelineModule
+        TimelineModule,
+        FloatLabelModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
