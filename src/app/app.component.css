@@ -1,18 +1,24 @@
-.contenido {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .content {
-    display: flex;
-    width: 100%;
-    justify-content: center; /* Centra horizontalmente el contenido */
-  }
-  
+/* Asegúrate de ajustar la altura del header */
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px; 
+}
+
+/* Asegúrate de que el contenido tenga suficiente espacio superior para el header */
+.content {
+  margin-top: 90px; /* Este margen debe coincidir con la altura del header */
+}
+
+/* Opcional: estilo para el footer */
+footer {
+  /* padding: 20px; */
+  text-align: center;
+}
+
   @media only screen and (max-width: 767px) {
     .contenido {
       align-items: center; /* Centra verticalmente el contenido en pantallas pequeñas */

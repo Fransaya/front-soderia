@@ -1,22 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit  } from '@angular/core';
+import { Router,Event, NavigationEnd } from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit{
 
   navbarOpen: boolean = false;
 
-  ngOnInit(): void {
-    
-  }
+  currentUrl: string = '';
+
+  activeSection: string = '';
 
   constructor(private router:Router){
+    this.router.events.pipe(
+      filter((event: Event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.currentUrl = event.urlAfterRedirects;
+    });
+  }
 
+  ngOnInit(): void {
+    
   }
 
   public rutaComponent(ruta:string){

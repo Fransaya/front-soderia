@@ -1,0 +1,17 @@
+<div class="container-txt">
+    <h2 class="title">Historia</h2>
+</div>
+<div class="timeline-content">
+    <p-timeline [value]="events" align="alternate" styleClass="customized-timeline" class="background-card">
+        <ng-template pTemplate="marker" let-event>
+            <span class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1">
+                <i [class]="event.icon" class="icono-timeline"></i>
+            </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event styleClass="conteniner-card">
+            <p-card [header]="event.status" [subheader]="event.date" styleClass="content-card">
+                <p>{{event.content}}</p>
+            </p-card>
+        </ng-template>
+    </p-timeline>
+</div>

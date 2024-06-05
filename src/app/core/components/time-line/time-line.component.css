@@ -1,0 +1,103 @@
+/*************************** LINEA DEL TIEMPO ***************************/
+
+
+.container-txt{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: var(--secondary-colors);
+    margin: 30px auto;
+}
+
+.title{
+    color: var(--secondary-colors);
+}
+
+.timeline-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 150px;
+    justify-content: center;
+    width: 100%;
+}
+
+.icono-timeline {
+    font-size: 30px;
+    color: black;
+}
+
+.container-card{
+    background-color: var(--secondary-color);
+}
+
+.background-card {
+    margin: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    /* background-color: var(--gray-color); */
+}
+
+.content-card{
+    box-shadow: 0 4px 8px rgb(3, 31, 117);
+    background-color: var(--secondary-color);
+    color:  white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-card .p-card {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Añadir efecto de ampliación al pasar el cursor */
+.content-card:hover{
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.customized-timeline .p-card-header,
+.customized-timeline .p-card-subheader,
+.customized-timeline p {
+    color: black;
+}
+
+/* Archivo styles.css o component-name.component.css */
+
+
+
+/* Estilos específicos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    .customized-timeline .p-timeline-event {
+    display: flex;
+    flex-direction: row;
+    }
+    .customized-timeline .p-timeline-event {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .customized-timeline .p-timeline-event-opposite,
+    .customized-timeline .p-timeline-event-content {
+        width: 100%;
+        text-align: left;
+    }
+
+    .customized-timeline .p-timeline-event-opposite {
+        order: 2;
+    }
+
+    .customized-timeline .p-timeline-event-content {
+        order: 1;
+    }
+
+    .customized-timeline .p-timeline-event-marker {
+        align-self: flex-start;
+    }
+}
+
+
+

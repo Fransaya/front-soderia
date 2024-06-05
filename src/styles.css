@@ -12,18 +12,25 @@
     --gray-color:#f8f9fa;
     --backgroud-color:#fbffcd;
     --black-color:hsl(0, 0%, 96%);
+    --bg-color: #f8f9fa;
+    --text-color: #343a40;
+    --error-color: #dc3545;
 
 }
 body, html {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 body {
     display: flex;
+    position: relative;
+    margin: 0 auto;
     width: 100%;
     justify-content: center;
-    background-color: var(--black-color);
+    background-color: var(--gray-color) !important;
+    /* background-color: var(--black-color); */
 }
 
 @media only screen and (max-width: 768px) {
@@ -35,3 +42,5 @@ body {
         padding: 0;
     }
 }
+
+

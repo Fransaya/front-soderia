@@ -30,6 +30,8 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { TimeLineComponent } from './core/components/time-line/time-line.component';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
         HeaderComponent,
         FooterComponent,
         LoginComponent,
-        ContactoComponent
+        ContactoComponent,
+        TimeLineComponent
     ],
     imports: [
         BrowserModule,
@@ -63,7 +66,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
         CardModule,
         TimelineModule,
         FloatLabelModule,
-        CarouselModule
+        CarouselModule,
+        MessagesModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]

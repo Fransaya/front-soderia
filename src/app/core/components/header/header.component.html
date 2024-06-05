@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../../../../assets/logo-prueba.jpg" style="width: 35px; height: 35px; border-radius: 50%;" class="img-soderia" alt="" srcset="">
-                <h4>Aguas de Mesa Delfina</h4>
+                <img src="../../../../assets/LOGO4.jpg" style="width: 35px; height: 35px; border-radius: 50%;" class="img-soderia" alt="" srcset="">
+                <h4 class="title">Aguas de Mesa Delfina</h4>
             </a>
             <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
                 <span class="navbar-toggler-icon"></span>
@@ -11,13 +11,15 @@
             <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/">Inicio</a>
+                        <a class="nav-link" routerLink="/" fragment="nosotros" [ngClass]="{'active': currentUrl.includes('#nosotros')}">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/contacto">Contactanos</a>
+                        <a class="nav-link" routerLink="/" fragment="historia" [ngClass]="{'active': currentUrl.includes('#historia')}">Historia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/contacto" fragment="contacto" [ngClass]="{'active': currentUrl.includes('#contacto')}">Contactanos</a>
                     </li>
                 </ul>
-                <p-button label="Ingresar" icon="pi pi-unlock" [outlined]="true" severity="success" (onClick)="rutaComponent('ingresar')" />
             </div>
         </div>
     </nav>

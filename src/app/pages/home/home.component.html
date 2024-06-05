@@ -1,6 +1,9 @@
 <section class="section-container">
-    <div class="section-content">
-        <p-card header="Historia" class="card-info1">
+    <div class="section-content" id="nosotros">
+        <div class="container-title" >
+            <h1 class="title-nosotros" style="color: white;">Sobre Nosotros</h1>
+        </div>
+        <p-card header="" class="card-info1">
             <div class="row g-0 mb-5 card1">
                 <div class="container-imgs">
                     <p-carousel 
@@ -29,30 +32,13 @@
                     <div class="card-body">
                         <p class="card-text">
                             Descubre la historia de Aguas de Mesa Delfina, una sodería con raíces familiares arraigadas en Villa Maria desde hace más de 15 años. Fundada por Mariano Donayo, quien heredó el legado de su padre, la sodería nació de la necesidad en el barrio y la ausencia de un repartidor de soda.
+                            Aguas de Mesa Delfina combina tradición y expansión, con planes futuros de aumentar la producción, ampliar el personal y adquirir más vehículos de reparto para seguir ofreciendo productos de calidad a una comunidad en crecimiento.
                         </p>
                     </div>
                 </div>
             </div>
         </p-card>
     </div>
-    
-    <div class="timeline-content">
-        <p-timeline [value]="events" align="alternate" styleClass="customized-timeline" class="background-card">
-            <ng-template pTemplate="marker" let-event>
-                <span class="flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1">
-                    <i [class]="event.icon" class="icono-timeline"></i>
-                </span>
-            </ng-template>
-            <ng-template pTemplate="content" let-event>
-                <p-card [header]="event.status" [subheader]="event.date">
-                    <img 
-                        *ngIf="event.image" 
-                        [alt]="event.name"
-                        width="200" 
-                        class="shadow-2" />
-                    <p>{{event.content}}</p>
-                </p-card>
-            </ng-template>
-        </p-timeline>
-    </div>
 </section>
+<app-time-line id="historia"></app-time-line>
+

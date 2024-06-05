@@ -3,27 +3,31 @@
     justify-content: center;
 }
 
+.title{
+    color: white;
+}
+
 .navbar {
-    background-color: var(--color-primaty);
     border-radius: 15px;
     margin: 10px;
+    background-color: var(--secondary-color);
     color: white;
     display: flex;
     flex-direction: row;
     gap: 15px;
     position: fixed;
     z-index: 5;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .nav-style {
-    background-color: var(--color-primaty);
+    background-color: var(--secondary-color);
     justify-content: center;
 }
 
 .navbar-brand {
     display: flex;
     align-items: center;
-    color: white;
 }
 
 .img-soderia {
@@ -61,13 +65,13 @@
 }
 
 .nav-link {
-    color: white;
     margin: 0 10px;
     transition: color 0.3s ease-in-out;
+    color: white;
 }
 
 .nav-link:hover {
-    color: #ddd;
+    color: var(--color-primaty);
     text-decoration: underline;
 }
 
@@ -81,5 +85,12 @@
     background-color: white;
     color: var(--color-primaty);
 }
+
+/* header.component.css */
+.nav-link.active {
+    font-weight: bold;
+    color: #1c5560;
+  }
+  
 
 
