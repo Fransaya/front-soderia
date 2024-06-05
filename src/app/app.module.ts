@@ -32,6 +32,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { TimeLineComponent } from './core/components/time-line/time-line.component';
 import { MessagesModule } from 'primeng/messages';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { MessagesModule } from 'primeng/messages';
         TimelineModule,
         FloatLabelModule,
         CarouselModule,
-        MessagesModule
+        MessagesModule,
+        AccordionModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]

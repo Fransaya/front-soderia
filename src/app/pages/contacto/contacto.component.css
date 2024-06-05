@@ -1,13 +1,22 @@
+.all-container{
+  display: flex;
+  width: 100%;
+  background-color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+  border-radius: 15px;
+  gap: 15px;
+}
 
 .section-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1300px;
   border-radius: 15px;
   padding: 40px 20px;
-  background-color: var(--secondary-color);
+  background-color: var(--bg-color);
 }
 
 .content-wrapper {
@@ -39,12 +48,31 @@
   color: var(--text-color);
 }
 
-.container-maps {
+.container-maps-faq {
+  display: flex;
   flex: 1;
+  flex-direction: column;
   min-width: 300px;
   max-width: 600px;
   margin: 20px;
   border-radius: 8px;
+}
+
+.container-maps {
+  margin-bottom: 20px;
+}
+
+.contact-details p {
+  margin: 5px 0;
+}
+
+.contact-details a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
 }
 
 form {
@@ -80,8 +108,8 @@ form {
 textarea {
   resize: vertical;
   min-height: 100px;
-  max-height: 150px; /* Altura máxima */
-  overflow-y: auto;  /* Barra de desplazamiento si se excede la altura */
+  max-height: 150px;
+  overflow-y: auto;
 }
 
 .error {
@@ -118,33 +146,60 @@ textarea {
   background-color: var(--secondary-color);
 }
 
-/* Media Query para Responsividad */
 @media (max-width: 768px) {
   .content-wrapper {
+    display:flex;
     flex-direction: column;
     align-items: center;
   }
 
   .container-form,
-  .container-maps {
+  .container-maps-faq {
     max-width: 100%;
   }
 
   .container-maps iframe {
     width: 100%;
   }
+
+  .container-faq {
+    display:flex;
+    position: absolute;
+    align-items: center;
+    z-index: 5;
+    flex-direction: row;
+    max-width: 500px;
+    padding: 15px;
+    bottom: -220px;
+  }
+
+  .FAQ{
+    color: var(--secondary-color) !important;
+  }
 }
 
-.container-logo{
+.container-logo {
   display: flex;
   margin: 20px auto;
   justify-content: center;
-
 }
 
-.style-logo{
+.style-logo {
   justify-content: center;
   width: 150px;
   height: 150px;
   border-radius: 50%;
+}
+.FAQ{
+  color: var(--bg-color);
+}
+
+.container-faq {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+  max-width: 500px;
+  padding: 15px;
+
 }
