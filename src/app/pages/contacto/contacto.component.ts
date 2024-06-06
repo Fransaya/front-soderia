@@ -1,6 +1,8 @@
 import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { EmailServicesService } from '../../core/services/emailService/email-services.service';
 
 @Component({
   selector: 'app-contacto',
@@ -17,7 +19,7 @@ export class ContactoComponent implements OnInit {
     this.initForm();
   }
 
-  constructor(private fb:FormBuilder, private messageServices: MessageService){
+  constructor(private fb:FormBuilder, private messageServices: MessageService, private emailService: EmailServicesService ){
 
   }
 
@@ -40,13 +42,42 @@ export class ContactoComponent implements OnInit {
   public enviarForm(){
     console.log("valores del form", this.contactoForm)
     if(this.contactoForm.valid){
-      this.seeAlert("Enviado","Hemos recibio tu consulta y nos pondemos en contacto!. Muchas Gracias", "success");
+      const mailEmpresa = 'fransay04@gmail.com';
+      const to = this.contactoForm.value.correo;
+      const celular= this.contactoForm.value.celular;
+      const message = this.contactoForm.value.mensaje;
+      console.log("aca llego")
+      const template = {
+        from_name: mailEmpresa,
+        to_name:to,
+        message
+      };
+      this.sendMail(template);
+      // window.location.href=`mailto:${mailEmpresa}?subject${encodeURIComponent(to)}&body=${encodeURIComponent(message)}`;
+      // this.seeAlert("Enviado","Hemos recibio tu consulta y nos pondemos en contacto!. Muchas Gracias", "success");
       this.contactoForm.reset();
       //todo: se debe realizar una consulta al back, primero en donde se guarden los datos de la consulta, y despues se 
       //todo un mail notificando de que hemos recibido su consulta y nos pondremos en contacto
     }else{
       this.seeAlert("Incompleto","Verifica los datos en el formulario","warning");
     }
+  };
+
+  private sendMail(templateParams:any){
+    this.emailService.sendEmail(templateParams)
+      .then((response: EmailJSResponseStatus) => {
+        console.log('Correo enviado con éxito!', response.status, response.text);
+        if(response.status){
+          this.seeAlert("Enviado","Hemos recibio tu consulta y nos pondemos en contacto!. Muchas Gracias", "success");
+        }else{
+          this.seeAlert("Error","Succedio un error y no pudimos enviar tu mail","warning");
+
+        }
+      }, (error) => {
+        console.error('Error al enviar el correo', error);
+      });
   }
+
+
 
 }
