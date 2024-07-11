@@ -33,6 +33,10 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { TimeLineComponent } from './core/components/time-line/time-line.component';
 import { MessagesModule } from 'primeng/messages';
 import { AccordionModule } from 'primeng/accordion';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 @NgModule({
     declarations: [
@@ -42,7 +46,11 @@ import { AccordionModule } from 'primeng/accordion';
         FooterComponent,
         LoginComponent,
         ContactoComponent,
-        TimeLineComponent
+        TimeLineComponent,
+        DashboardComponent,
+        SidebarComponent,
+        ClienteComponent,
+        PedidosComponent
     ],
     imports: [
         BrowserModule,
