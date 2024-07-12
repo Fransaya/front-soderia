@@ -1,0 +1,31 @@
+/* Estilo para el componente principal que debe ocupar todo el ancho */
+:host {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Hace que el componente ocupe todo el espacio vertical disponible */
+    background-color: #f0f0f0; /* Color de fondo opcional para el componente */
+    padding: 20px; /* Espaciado interno opcional */
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh; /* Ajusta la altura según necesites */
+}
+
+.app-sidebar {
+    width: 250px; /* Ancho de la barra lateral */
+    background-color: #333; /* Color de fondo de la barra lateral */
+    color: #fff; /* Color de texto de la barra lateral */
+}
+
+.main-content {
+    flex: 1; /* El contenido principal ocupa todo el espacio restante */
+    padding: 20px; /* Espaciado interno */
+}
+
+.dashboard-content {
+    background-color: #f0f0f0; /* Color de fondo del contenido */
+    padding: 20px; /* Espaciado interno del contenido */
+    border-radius: 5px; /* Bordes redondeados opcional */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+}

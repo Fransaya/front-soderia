@@ -1,0 +1,64 @@
+.sidebar {
+    background-color: #f0f0f0;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container-inf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.img-soderia {
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    margin-right: 10px;
+    border-radius: 50%; /* Opcional: para bordes redondeados */
+}
+
+.system-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-bottom: 10px;
+}
+
+.nav-list li:hover{
+    background-color: var(--organe-color);
+    color: white;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list li a i {
+    margin-right: 10px;
+}
+
+.nav-list li a:hover {
+    color:black; /* Cambia el color al pasar el mouse */
+    background-color: var(--organge-color);
+    margin: 10px;
+    border-radius: 5px;
+}
