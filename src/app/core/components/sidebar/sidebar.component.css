@@ -1,64 +1,111 @@
 .sidebar {
-    background-color: #f0f0f0;
     width: 250px;
-    height: 100%;
+    background-color: #001f36;
+    color: white;
+    height: 100vh;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease; /* Transición suave al expandir/contraer */
+}
+
+.sidebar-collapsed {
+    width: 70px; /* Ancho cuando el sidebar está contraído */
+}
+
+.sidebar .toggle-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.sidebar .toggle-button i {
+    font-size: 1.5em;
+    color: #fff; 
 }
 
 .container-inf {
-    display: flex;
-    align-items: center;
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.img-soderia {
-    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
-    height: auto;
-    margin-right: 10px;
-    border-radius: 50%; /* Opcional: para bordes redondeados */
+.sidebar .container-inf {
+    padding: 10px; /* Espaciado interno del contenedor */
+    text-align: center;
 }
 
-.system-name {
-    font-size: 1.2rem;
-    font-weight: bold;
+.sidebar .container-inf .img-soderia {
+  max-width: 100%; /* Ajusta el tamaño máximo del logo */
+  height: auto; /* Mantén la proporción de aspecto */
+}
+
+.sidebar .container-inf .system-name {
+  font-size: 2em; /* Tamaño del nombre del sistema */
+  margin-top: 5px; /* Espaciado superior */
+}
+
+.sidebar-nav .nav-list {
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-.sidebar-nav {
-    margin-top: 20px;
+.sidebar-nav .nav-list li {
+    margin-bottom: 15px;
 }
 
-.nav-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-.nav-list li {
-    margin-bottom: 10px;
-}
-
-.nav-list li:hover{
-    background-color: var(--organe-color);
+.sidebar-nav .nav-list li a {
     color: white;
-    margin: 10px;
-    border-radius: 5px;
-}
-
-.nav-list li a {
     text-decoration: none;
-    color: #333;
     display: flex;
     align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.nav-list li a i {
+.sidebar-nav .nav-list li a i {
     margin-right: 10px;
 }
 
-.nav-list li a:hover {
-    color:black; /* Cambia el color al pasar el mouse */
-    background-color: var(--organge-color);
-    margin: 10px;
-    border-radius: 5px;
+.sidebar-nav .nav-list li a:hover,
+.sidebar-nav .nav-list li a.active-link {
+    background-color: var(--organe-color);
+    margin: 0;
+    color: white;
 }
+
+/* Estilos adicionales cuando el sidebar está contraído */
+.sidebar-collapsed .container-inf {
+    text-align: center;
+    padding: 5px; 
+}
+
+.sidebar-collapsed .container-inf .img-soderia {
+    max-width: 35px; 
+}
+
+.sidebar-collapsed .container-inf .system-name {
+    display: none; 
+}
+
+.sidebar-collapsed .nav-list li a i {
+    padding: 0;
+    margin: 0;
+    font-size: 1.5em; 
+}
+
+.sidebar-collapsed.nav-list li a:hover,
+.sidebar-collapsed .nav-list li a.active-link {
+    background-color: var(--organe-color);
+    padding: 3px;
+    margin: 0px;
+    color: white;
+}
+
+.sidebar-collapsed .nav-list li a span {
+    display: none; 
+}
+
+

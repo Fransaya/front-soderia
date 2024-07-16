@@ -1,0 +1,62 @@
+/* Estilos generales del formulario */
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007bff; /* Color del borde cuando está enfocado */
+}
+
+
+
+.error {
+    color: #dc3545; /* Color rojo para mensajes de error */
+    font-size: 14px;
+    margin-top: 1px;
+}
+
+.error-message {
+    display: block;
+}
+
+.container-btn{
+    display: flex;
+    justify-content: end;
+}
+
+.btn-register{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 120px;
+    border-radius: 10px;
+    background-color: var(--organe-color);
+    color: white;
+    border: none;
+    align-items: center;
+    gap: 5px;
+}
+
+
+

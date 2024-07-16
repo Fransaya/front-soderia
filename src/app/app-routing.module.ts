@@ -5,9 +5,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
-import { VentasComponent } from './ventas/ventas.component';
-import { RecorridosComponent } from './recorridos/recorridos.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
+import { RecorridosComponent } from './pages/recorridos/recorridos.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 
 const routes: Routes = [

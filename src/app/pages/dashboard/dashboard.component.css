@@ -4,7 +4,6 @@
     flex-direction: column;
     flex-grow: 1; /* Hace que el componente ocupe todo el espacio vertical disponible */
     background-color: #f0f0f0; /* Color de fondo opcional para el componente */
-    padding: 20px; /* Espaciado interno opcional */
 }
 
 .dashboard-container {

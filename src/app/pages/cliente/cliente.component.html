@@ -1,1 +1,65 @@
-<p>cliente works!</p>
+<section class="section">
+    <div class="container-inf">
+        <div class="title">
+            <h2>Clientes</h2>
+        </div>
+        <div class="container-content">
+            <div class="filtros">
+                <div class="nuevo-cliente">
+                    <button 
+                        pButton 
+                        pRipple 
+                        icon="pi pi-plus"
+                        label="Registrar Cliente" 
+                        class="p-button-success"
+                        (click)="showDialog()">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container-modal">
+            <p-dialog header="Nuevo Cliente" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+                <div class="container-form">
+                    <form [formGroup]="clienteForm" class="formulario" (ngSubmit)="registerClient()">
+                        <div class="form-group">
+                            <label for="nombre">Nombre y Apellido</label>
+                            <input type="text" formControlName="nombre" id="nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input id="email" formControlName="email" type="email" />
+                            <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched" class="error">
+                                <span class="error-message">Ingrese un mail válido.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Telefono / Celular</label>
+                            <input id="telefono" formControlName="celular" type="text" />
+                            <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched" class="error">
+                                <span class="error-message">Ingrese un Telefono válido.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Direccíon</label>
+                            <input type="text" formControlName="direccion" id="direccion">
+                        </div>
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad</label>
+                            <input type="text" formControlName="ciudad" id="ciudad">
+                        </div>
+                        <div class="form-group">
+                            <label for="codigoPostal">Codigo Postal</label>
+                            <input type="number" formControlName="codigoPostal" id="codigoPostal">
+                        </div>
+                        <div class="container-btn">
+                            <button type="submit" class="btn-register"><i class="pi pi-check"></i>Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </p-dialog>
+        </div>
+        <div class="container-table">
+
+        </div>
+    </div>
+</section>

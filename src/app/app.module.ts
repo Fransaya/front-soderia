@@ -37,9 +37,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
-import { VentasComponent } from './ventas/ventas.component';
-import { RecorridosComponent } from './recorridos/recorridos.component';
-import { UsuariosComponent } from './usuarios/usuarios.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
+import { RecorridosComponent } from './pages/recorridos/recorridos.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 
 @NgModule({
     declarations: [
