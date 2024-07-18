@@ -1,9 +1,111 @@
-/* Estilos generales del formulario */
+/* contenido prinicpal y general*/
+.title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
 
+.title-clientes {
+    margin-left: 50px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.title-clientes::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Puedes ajustar esta distancia según tu preferencia */
+    width: 100%;
+    height: 2px; /* Puedes ajustar el grosor de la línea */
+    background-color: #fe5a37; /* Color de la línea */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-clientes:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* ESTILOS DE FILTROS*/
+.filtros{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.title-filters{
+    margin-top: 5px;
+    padding: 0;
+}
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;                                                                                                                                                                                                                                                                                     ;
+}
+
+.container-filters{                     
+    display: flex;
+    gap: 1rem;                                                                                                      
+}
+
+.filters label {
+    margin-top: 5px;
+    margin-right: 2px;
+}
+
+.filters input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.registrar-cliente{
+    display: flex;
+    margin-top: 30px;
+}
+
+
+/* Estilos generales del formulario */
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; /* Espacio entre columnas */
+}
 
 .form-group {
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
+
+.container-btn {
+    grid-column: span 2; /* Para que el botón ocupe ambas columnas */
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.error-container {
+    height: 1.5rem; /* Ajusta esta altura según sea necesario */
+}
+
+
+.btn-register {
+    background-color: #fe5a37;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+
 
 label {
     display: block;
@@ -56,6 +158,95 @@ input[type="number"]:focus {
     border: none;
     align-items: center;
     gap: 5px;
+}
+
+
+.btn-cancelar{
+    background-color: #ee1616;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 120px;
+    border-radius: 10px;
+    border: none;
+    align-items: center;
+    gap: 5px;
+}
+
+/********* ESTILOS DE TABLA DE CLIENTES **********************+*/
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.customer-table th, .customer-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.customer-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.customer-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.customer-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.customer-table th, .customer-table td {
+    padding: 12px 15px;
+}
+
+.customer-table th {
+    background-color: var(--organe-color);
+    color: white;
+}
+
+.btn-action {
+    background-color: #fff;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    gap: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-action i {
+    font-size: 1rem;
+}
+
+.btn-action.edit {
+    color: #4CAF50;
+}
+
+.btn-action.edit:hover {
+    background-color: #e8f5e9;
+    transform: scale(1.1);
+}
+
+.btn-action.cancel {
+    color: #f44336;
+}
+
+.btn-action.cancel:hover {
+    background-color: #ffebee;
+    transform: scale(1.1);
+}
+
+.btn-action:focus {
+    outline: none;
 }
 
 

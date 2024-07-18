@@ -20,6 +20,7 @@ import { CardModule } from 'primeng/card';
 import { TimelineModule } from 'primeng/timeline';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CarouselModule } from 'primeng/carousel';
+import { ToastModule } from 'primeng/toast';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -83,7 +84,8 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
         FloatLabelModule,
         CarouselModule,
         MessagesModule,
-        AccordionModule
+        AccordionModule,
+        ToastModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
