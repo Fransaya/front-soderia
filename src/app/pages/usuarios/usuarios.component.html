@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="container-modal">
-            <p-dialog header="Nuevo Cliente" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+            <p-dialog header="Nuevo Usuario" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
                 <div class="container-form">
                         <form [formGroup]="usuarioForm" class="formulario" (ngSubmit)="registerClient()">
                             <div class="form-group">
@@ -74,7 +74,7 @@
                                 <select formControlName="rol" id="rol" class="select-filter">
                                     <option value="">Seleccionar rol</option>
                                     <option value="administrador">Administrador</option>
-                                    <option value="produccion">Producción</option>
+                                    <option value="produccion">Produccion</option>
                                     <option value="repartidor">Repartidor</option>
                                 </select>
                                 <div class="error-container">

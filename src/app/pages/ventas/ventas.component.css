@@ -1,0 +1,258 @@
+/* Estilos generales del contenedor */
+.ventas-container {
+    padding: 20px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.title-ventas {
+    margin-left: 50px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.title-ventas::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Puedes ajustar esta distancia según tu preferencia */
+    width: 100%;
+    height: 2px; /* Puedes ajustar el grosor de la línea */
+    background-color: #fe5a37; /* Color de la línea */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-ventas:hover::after {
+    transform: scaleX(1);
+}
+/* Estilos de la sección principal */
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Estilos para la sección del formulario */
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.container-btn{
+    display: flex;
+    justify-content: end;
+}
+
+.register-venta {
+    background-color: var(--organe-color); /* Asegúrate de tener esta variable definida en tu CSS */
+    color: white;
+    font-size: 16px; /* Ajusta el tamaño de fuente si es necesario */
+    font-weight: 600;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    max-width: 250px;
+    text-align: center; /* Centra el texto dentro del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Añade transición para el hover */
+}
+
+.register-venta:hover {
+    background-color: var(--secondary-color); /* Cambia el color al pasar el ratón */
+    transform: scale(1.05); /* Escala el botón ligeramente al pasar el ratón */
+}
+
+.register-venta:focus {
+    outline: none; /* Quita el borde del foco si no lo deseas */
+}
+
+
+
+.client-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.client-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.client-list li:hover {
+    background: #f0f0f0;
+}
+
+/* Estilos para la sección de la tabla */
+.table-section {
+    flex: 1;
+    min-width: 300px;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tabla {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.ventas-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.ventas-table th, .ventas-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.ventas-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .form-section, .table-section {
+        min-width: 100%;
+    }
+}
+
+/* filtro de ventas */
+.filtro-ventas {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.titulo-filtro {
+    text-align: right;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--primary-color); /* Asegúrate de definir esta variable */
+}
+
+.filtro-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filtro-item {
+    flex: 1;
+    min-width: 200px;
+}
+
+.section-filter-2{
+    display: flex;
+    gap: 15px;
+}
+
+.filtro-item label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.filtro-item input[type="text"],
+.filtro-item input[type="date"],
+.filtro-item select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-list {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    margin-top: 5px;
+    list-style: none;
+    padding: 0;
+    z-index: 1000;
+}
+
+.dropdown-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.filtro-item{
+    display: flex;
+    align-items: center;
+}
+
+.filtro-item button {
+    background-color: var(--organe-color); 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.filtro-item button:hover {
+    background-color: var(--secondary-color);; 
+}
+

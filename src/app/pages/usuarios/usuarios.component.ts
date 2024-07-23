@@ -107,7 +107,26 @@ export class UsuariosComponent implements OnInit {
     public showUpdate(usuario:any){
       this.visible=true;
       this.editUser=true;
-      this.usuarioForm.patchValue(usuario)
+
+      const rolMap:any = {
+        '1': 'administrador',
+        '2': 'produccion',
+        '3': 'repartidor'
+      };
+    
+      const estadoMap:any = {
+        '1': 'activo',
+        '2': 'inactivo'
+      };
+    
+      this.usuarioForm.patchValue({
+        nombre: usuario.nombre,
+        email: usuario.email,
+        telefono: usuario.telefono,
+        rol: rolMap[usuario.rol.id], // Mapea el id al valor correcto
+        estado: estadoMap[usuario.estado.id] // Mapea el id al valor correcto
+      });
+      
     }
 
     //TODO: MODIFICAR CLIENTE
