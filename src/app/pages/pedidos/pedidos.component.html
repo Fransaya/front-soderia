@@ -1,1 +1,115 @@
-<p>pedidos works!</p>
+<div class="pedidos-container">
+    <div class="title">
+        <h1 class="title-ventas">Pedidos</h1>
+    </div> 
+</div>
+
+<div class="main-content">
+    <div class="main-content">
+        <div class="form-section">
+            <form [formGroup]="pediosForm" class="formulario" (ngSubmit)="registerPedidos()">
+                <div class="form-group">
+                    <label for="cliente">Cliente</label>
+                    <input type="text" id="cliente" formControlName="cliente" (input)="onClientInput()" (blur)="onClientBlur()" />
+                    <ul *ngIf="filteredClients.length > 0" class="client-list">
+                        <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label for="total">Cantidad de Unidades</label>
+                    <input id="total" formControlName="cantUnidades" type="number" step="0.01" />
+                </div>
+
+                <div class="form-group">
+                    <label for="total">Precio por unidad</label>
+                    <input id="total" formControlName="precioUnidades" type="number" step="0.01" />
+                </div>
+
+                <div class="form-group">
+                    <label for="total">Total</label>
+                    <input id="total" formControlName="total" type="number" step="0.01" />
+                </div>
+                <div class="container-btn">
+                    <button type="submit" class="register-venta">Registrar Pedido</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="table-section">
+            <h3>Pedidos del dia</h3>
+            <div class="filtro-container">
+                <!-- Filtro por cliente -->
+                <div class="filtro-item">
+                    <label for="cliente">Cliente:</label>
+                    <input id="cliente" type="text"  (input)="onClientFilterInput()" placeholder="Buscar cliente...">
+                    <ul class="dropdown-list" *ngIf="filteredClients.length > 0">
+                        <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
+                    </ul>
+                </div>             
+            </div>
+            <div class="tabla">
+                <table class="ventas-table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Cant. Unidades</th>
+                            <th>Total Venta</th>
+                            <th>Estado</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pedidos of pedidosData">
+                            <td>{{ pedidos.cliente }}</td>
+                            <td>{{ pedidos.cantUnidades }}</td>
+                            <td>{{ pedidos.totalVenta }}</td>
+                            <td>{{ pedidos.estado }}</td>
+                            <td class="actions">
+                                <button type="button" title="Cambiar Estado" (click)="showUpdateStatus()" class="change-status p-button p-button-rounded p-button-info">
+                                    <i class="pi pi-refresh"></i>
+                                </button>
+                                <button type="button" title="Eliminar Pedidos" class="delete p-button p-button-rounded p-button-danger">
+                                    <i class="pi pi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="container-modal">
+            <p-dialog header="Modificar Estado" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+                <div class="container-form">
+                        <form [formGroup]="pediosForm" class="formulario" (ngSubmit)="updateStatus()">
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select formControlName="estado" id="estado" class="select-filter">
+                                    <option value="">Seleccionar estado</option>
+                                    <option value="activo">Pendiente</option>
+                                    <option value="cancelar">Cancelado</option>
+                                    <option value="visitado">Visitado</option>
+                                    <option value="inactivo">Entregado</option>
+                                </select>
+                                <div class="error-container">
+                                    <div *ngIf="pediosForm.get('estado')?.invalid && pediosForm.get('estado')?.touched" class="error">
+                                        <span class="error-message">El estado es requerido.</span>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="container-btn">
+                            <button type="button" class="btn-cancelar" (click)="cancelar()"> 
+                                <i class="pi pi-times" style="font-size: 1rem"></i>
+                                Cancelar
+                            </button>
+                                <button type="button" class="btn-register"><i class="pi pi-check"></i>Editar</button>
+                            </div>
+                        </form>
+                </div>
+            </p-dialog>
+        </div>
+
+</div>
+
+
