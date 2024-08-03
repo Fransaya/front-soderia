@@ -1,0 +1,156 @@
+/* Estilos generales del contenedor */
+.precios-container {
+    padding: 20px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.title-precios {
+    margin-left: 50px;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+}
+
+.title-precios::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Puedes ajustar esta distancia según tu preferencia */
+    width: 100%;
+    height: 2px; /* Puedes ajustar el grosor de la línea */
+    background-color: #fe5a37; /* Color de la línea */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+.title-precios:hover::after {
+    transform: scaleX(1);
+}
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.tables-container {
+    display: flex;
+    gap: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+    background-color: var(--organe-color);
+    color: var(--background-color);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: var(--organe-color);
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.change-status {
+    background-color: var(--organe-color);
+    color: var(--background-color);
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.change-status:hover {
+    background-color: #e44f2d;
+}
+
+.delete {
+    background-color: #dc3545;
+    color: var(--background-color);
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.delete:hover {
+    background-color: #c82333;
+}
+
+.container-modal .container-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-form label {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.container-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancelar {
+    background-color: #dc3545;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-cancelar:hover {
+    background-color: #c82333;
+}
+
+btn-register {
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.btn-register:hover {
+    background-color: #001b2e;
+    color: white;
+}

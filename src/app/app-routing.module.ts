@@ -9,6 +9,7 @@ import { VentasComponent } from './pages/ventas/ventas.component';
 import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
+import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Aguas de Mesa Delfina' } },
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'ventas', component: VentasComponent, data: { title: 'Productos' } },
       { path: 'recorridos', component: RecorridosComponent, data: { title: 'Recorridos' } },
       { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
-      { path: 'pedidos', component: PedidosComponent, data: { title: 'Pedidos' } }
+      { path: 'pedidos', component: PedidosComponent, data: { title: 'Pedidos' } },
+      { path: 'lista-precios', component:ListaPreciosComponent, data:{title: 'Lista de Precios'}}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

@@ -41,6 +41,7 @@ import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
         PedidosComponent,
         VentasComponent,
         RecorridosComponent,
-        UsuariosComponent
+        UsuariosComponent,
+        ListaPreciosComponent
     ],
     imports: [
         BrowserModule,

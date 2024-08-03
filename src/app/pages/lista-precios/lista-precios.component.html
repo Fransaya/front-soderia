@@ -1,0 +1,79 @@
+<div class="precios-container">
+    <div class="title">
+        <h1 class="title-precios">Lista de Precios</h1>
+    </div>
+</div>
+
+<div class="main-content">
+    <div class="tables-container">
+        <table id="table1">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of productos1">
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.producto}}</td>
+                    <td>{{prod.precio}}</td>
+                    <td class="actions">
+                        <button type="button" title="Modificar Precio" (click)="modificarPrecio(prod)" class="change-status">
+                            <i class="pi pi-refresh"></i>
+                        </button>
+                        <button type="button" title="Eliminar Producto" (click)="eliminarProductoLista()" class="delete">
+                            <i class="pi pi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table id="table2">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of productos2">
+                    <td>{{prod.id}}</td>
+                    <td>{{prod.producto}}</td>
+                    <td>{{prod.precio}}</td>
+                    <td class="actions">
+                        <button type="button" title="Cambiar Estado" (click)="modificarPrecio(prod)" class="change-status">
+                            <i class="pi pi-refresh"></i>
+                        </button>
+                        <button type="button" title="Eliminar Pedidos" (click)="eliminarProductoLista()" class="delete">
+                            <i class="pi pi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container-modal">
+        <p-dialog header="Modificar Estado" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+            <div class="container-form">
+                <label for="precio">Precio</label>
+                <p-inputNumber inputId="integeronly" [(ngModel)]="precioModificado"></p-inputNumber>
+                <div class="container-btn">
+                    <button type="button" class="btn-cancelar" (click)="cancelar()"> 
+                        <i class="pi pi-times" style="font-size: 1rem"></i>
+                        Cancelar
+                    </button>
+                    <button type="button" class="btn-register" (click)="actualizarPrecio()">
+                        <i class="pi pi-check"></i>Actualizar
+                    </button>
+                </div>
+            </div>
+        </p-dialog>
+    </div>
+</div>

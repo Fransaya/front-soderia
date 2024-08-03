@@ -23,7 +23,7 @@
     bottom: -5px; /* Puedes ajustar esta distancia según tu preferencia */
     width: 100%;
     height: 2px; /* Puedes ajustar el grosor de la línea */
-    background-color: #fe5a37; /* Color de la línea */
+    background-color: var(--organe-color); /* Color de la línea */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease-in-out;

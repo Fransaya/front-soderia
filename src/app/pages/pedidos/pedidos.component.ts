@@ -55,7 +55,6 @@ export class PedidosComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilder){
-
     this.pediosForm= this.fb.group({
       cliente:['', Validators.required],
       cantUnidades:[0, Validators.required],
@@ -90,7 +89,6 @@ export class PedidosComponent implements OnInit {
     this.visible=true;
     //! guardar aqui el id del pedido seleccioado para despues hacer el update
     // this.idPedidoSelect= idrecibido
-
   }
 
    //TODO: OCULTAR MODAL DE MODIFICAR / CREAR
@@ -109,6 +107,25 @@ export class PedidosComponent implements OnInit {
   public updateStatus(){
 
   }
+
+  //todo eliminar pedidos
+  public deletePedidos(){
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'No podrás revertir esto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminarlo',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if(result.isConfirmed){
+          //! accion para eliminar el pedido si apreta eliminar
+        }
+    });
+  }
+  
 
   public onClientFilterInput(){
     

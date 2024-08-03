@@ -4,7 +4,6 @@
     </div> 
 </div>
 
-<div class="main-content">
     <div class="main-content">
         <div class="form-section">
             <form [formGroup]="pediosForm" class="formulario" (ngSubmit)="registerPedidos()">
@@ -69,7 +68,7 @@
                                 <button type="button" title="Cambiar Estado" (click)="showUpdateStatus()" class="change-status p-button p-button-rounded p-button-info">
                                     <i class="pi pi-refresh"></i>
                                 </button>
-                                <button type="button" title="Eliminar Pedidos" class="delete p-button p-button-rounded p-button-danger">
+                                <button type="button" title="Eliminar Pedidos" (click)="deletePedidos()" class="delete p-button p-button-rounded p-button-danger">
                                     <i class="pi pi-trash"></i>
                                 </button>
                             </td>
