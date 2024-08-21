@@ -30,6 +30,7 @@ export class UsuariosComponent implements OnInit {
       telefono: "1234567890",
       rol: {id:1, tipo:"Administrador"},
       estado: {id:1, tipo:"Activo"},
+      fechaNacimiento: "1990-01-01",
     },
     {
       id:2,
@@ -38,6 +39,7 @@ export class UsuariosComponent implements OnInit {
       telefono: "0987654321",
       rol: {id:1, tipo:"Produccion"},
       estado: {id:1, tipo:"Activo"},
+      fechaNacimiento: "1990-01-01",
     },
     {
       id:3,
@@ -46,6 +48,7 @@ export class UsuariosComponent implements OnInit {
       telefono: "111222333",
       rol: {id:1, tipo:"Produccion"},
       estado: {id:1, tipo:"Inactivo"},
+      fechaNacimiento: "1990-01-01",
     },
     {
       id:4,
@@ -54,6 +57,7 @@ export class UsuariosComponent implements OnInit {
       telefono: "333222111",
       rol: {id:1, tipo:"Repartidor"},
       estado: {id:2, tipo:"Inactivo"},
+      fechaNacimiento: "1990-01-01",
     },
     {
       id:5,
@@ -62,6 +66,7 @@ export class UsuariosComponent implements OnInit {
       telefono: "444555666",
       rol: {id:1, tipo:"Repartidor"},
       estado: {id:2, tipo:"Activo"},
+      fechaNacimiento: "1990-01-01",
     }
   ];
 
@@ -76,6 +81,7 @@ export class UsuariosComponent implements OnInit {
       telefono: ['', Validators.required],
       rol: [''],
       estado: [''],
+      fechaNacimiento: ['', Validators.required],
       // Agrega más campos según tus necesidades
     });
   };

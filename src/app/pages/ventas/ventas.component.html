@@ -1,123 +1,117 @@
 <div class="ventas-container">
     <div class="title">
         <h1 class="title-ventas">Ventas</h1>
-    </div> 
+    </div>
 </div>
 
-    <div class="main-content">
-        <div class="form-section">
-            <form [formGroup]="ventasForm" class="formulario" (ngSubmit)="registerSell()">
-                <div class="form-group">
-                    <label for="cliente">Cliente</label>
-                    <input type="text" id="cliente" formControlName="cliente" (input)="onClientInput()" (blur)="onClientBlur()" />
-                    <ul *ngIf="filteredClients.length > 0" class="client-list">
-                        <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
-                    </ul>
-                </div>
-
-                <div class="form-group">
-                    <label for="usuario">Usuario</label>
-                    <select id="usuario" formControlName="usuario">
-                        <option value="">Seleccionar usuario</option>
-                        <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.name }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="metodoPago">Método de Pago</label>
-                    <select id="metodoPago" formControlName="metodoPago">
-                        <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.name }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="fecha">Fecha</label>
-                    <input id="fecha" formControlName="fecha" type="date" />
-                </div>
-
-                <div class="form-group">
-                    <label for="hora">Hora</label>
-                    <input id="hora" formControlName="hora" type="time" />
-                </div>
-
-                <div class="form-group">
-                    <label for="total">Total</label>
-                    <input id="total" formControlName="total" type="number" step="0.01" />
-                </div>
-
-                <div class="form-group">
-                    <label for="notaAdiciona">Nota Adicional</label>
-                    <textarea id="notaAdiciona" formControlName="notaAdicional"></textarea>
-                </div>
-                <div class="container-btn">
-                    <button type="submit" class="register-venta">Registrar Venta</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="table-section">
-            <h3>Historial de Ventas</h3>
-            <div class="filtro-container">
-                <!-- Filtro por cliente -->
-                <div class="filtro-item">
-                    <label for="cliente">Cliente:</label>
-                    <input id="cliente" type="text"  (input)="onClientFilterInput()" placeholder="Buscar cliente...">
-                    <ul class="dropdown-list" *ngIf="filteredClients.length > 0">
-                        <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
-                    </ul>
-                </div>
-        
-                <!-- Filtro por fecha -->
-                <div class="filtro-item">
-                    <label for="fecha">Fecha:</label>
-                    <input id="fecha" type="date" >
-                </div>
-        
-                <!-- Filtro por rango de fechas -->
-                <div class="filtro-item">
-                    <label for="rango-fechas">Rango de Fechas:</label>
-                    <select id="rango-fechas" >
-                        <option value="hoy">Hoy</option>
-                        <option value="ayer">Ayer</option>
-                        <option value="ultimos-7-dias">Últimos 7 días</option>
-                        <option value="ultimos-30-dias">Últimos 30 días</option>
-                    </select>
-                </div>
-                <div class="section-filter-2">
-                    <div class="filtro-item">
-                        <label for="usuario">Usuario:</label>
-                        <input id="usuario" type="text"  placeholder="Buscar usuario...">
-                    </div>
-            
-                    <!-- Botón de búsqueda -->
-                    <div class="filtro-item">
-                        <button type="button" (click)="applyFilters()">Aplicar Filtros</button>
-                    </div>
-                </div>
-                <!-- Filtro por usuario -->
-                
+<div class="main-content">
+    <div class="form-section">
+        <form [formGroup]="ventasForm" class="formulario" (ngSubmit)="registerSell()">
+            <div class="form-group">
+                <label for="cliente">Cliente</label>
+                <input type="text" id="cliente" formControlName="cliente" (input)="onClientInput()"
+                    (blur)="onClientBlur()" />
+                <ul *ngIf="filteredClients.length > 0" class="client-list">
+                    <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
+                </ul>
             </div>
-            <div class="tabla">
-                <table class="ventas-table">
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Usuario</th>
-                            <th>Método de Pago</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let venta of ventasData">
-                            <td>{{ venta.cliente }}</td>
-                            <td>{{ venta.fecha }}</td>
-                            <td>{{ venta.hora }}</td>
-                            <td>{{ venta.usuario }}</td>
-                            <td>{{ venta.metodoPago }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <select id="usuario" formControlName="usuario">
+                    <option value="">Seleccionar usuario</option>
+                    <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.name }}</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label for="metodoPago">Método de Pago</label>
+                <select id="metodoPago" formControlName="metodoPago">
+                    <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.name }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input id="fecha" formControlName="fecha" type="date" />
+            </div>
+
+            <div class="form-group">
+                <label for="hora">Hora</label>
+                <input id="hora" formControlName="hora" type="time" />
+            </div>
+
+            <div class="form-group">
+                <label for="total">Total</label>
+                <input id="total" formControlName="total" type="number" step="0.01" />
+            </div>
+
+        </form>
+    </div>
+
+    <div class="table-section">
+        <h3>Historial de Ventas</h3>
+        <div class="filtro-container">
+            <!-- Filtro por cliente -->
+            <div class="filtro-item">
+                <label for="cliente">Cliente:</label>
+                <input id="cliente" type="text" (input)="onClientFilterInput()" placeholder="Buscar cliente...">
+                <ul class="dropdown-list" *ngIf="filteredClients.length > 0">
+                    <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
+                </ul>
+            </div>
+
+            <!-- Filtro por fecha -->
+            <div class="filtro-item">
+                <label for="fecha">Fecha:</label>
+                <input id="fecha" type="date">
+            </div>
+
+            <!-- Filtro por rango de fechas -->
+            <div class="filtro-item">
+                <label for="rango-fechas">Rango de Fechas:</label>
+                <select id="rango-fechas">
+                    <option value="hoy">Hoy</option>
+                    <option value="ayer">Ayer</option>
+                    <option value="ultimos-7-dias">Últimos 7 días</option>
+                    <option value="ultimos-30-dias">Últimos 30 días</option>
+                </select>
+            </div>
+            <div class="section-filter-2">
+                <div class="filtro-item">
+                    <label for="usuario">Usuario:</label>
+                    <input id="usuario" type="text" placeholder="Buscar usuario...">
+                </div>
+
+                <!-- Botón de búsqueda -->
+                <div class="filtro-item">
+                    <button type="button" (click)="applyFilters()">Aplicar Filtros</button>
+                </div>
+            </div>
+            <!-- Filtro por usuario -->
+
         </div>
+        <div class="tabla">
+            <table class="ventas-table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Usuario</th>
+                        <th>Método de Pago</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let venta of ventasData">
+                        <td>{{ venta.cliente }}</td>
+                        <td>{{ venta.fecha }}</td>
+                        <td>{{ venta.hora }}</td>
+                        <td>{{ venta.usuario }}</td>
+                        <td>{{ venta.metodoPago }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

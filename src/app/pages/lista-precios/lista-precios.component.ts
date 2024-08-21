@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-lista-precios',
   templateUrl: './lista-precios.component.html',
   styleUrl: './lista-precios.component.css'
 })
 export class ListaPreciosComponent implements OnInit{
+
+   mostrarFormulario = false;
+
+   formProducto: FormGroup;
 
   visible:boolean=false;
 
@@ -22,7 +26,7 @@ export class ListaPreciosComponent implements OnInit{
       
     }
 
-    constructor(){
+    constructor(private fb:FormBuilder){
       this.productos1 = [
         {
             "id": 1,
@@ -46,28 +50,10 @@ export class ListaPreciosComponent implements OnInit{
         }
       ];
 
-      this.productos2 = [
-        {
-            "id": 5,
-            "producto": "Producto C",
-            "precio": 20.00
-        },
-        {
-            "id": 6,
-            "producto": "Producto D",
-            "precio": 25.00
-        },
-        {
-            "id": 7,
-            "producto": "Producto G",
-            "precio": 22.00
-        },
-        {
-            "id": 8,
-            "producto": "Producto H",
-            "precio": 30.00
-        }
-      ]
+      this.formProducto = this.fb.group({
+      nombre: ['', Validators.required],
+      precio: ['', [Validators.required, Validators.min(0.01)]]
+    });
     }
 
     //! FUNCIONES Y METODOS DEL CODIGO PARA LA FUNCIONALIDAD
@@ -76,6 +62,16 @@ export class ListaPreciosComponent implements OnInit{
   //todo: OCULTAR MODAL DE MODIFICAR PRECIO
   cancelar(){
     this.visible=false;
+  }
+
+  agregarProducto() {
+    if (this.formProducto.valid) {
+      const producto = this.formProducto.value;
+      console.log('Producto agregado:', producto);
+      // Lógica para agregar el producto
+      this.mostrarFormulario = false;
+      this.formProducto.reset();
+    }
   }
 
   //todo metodo para mostrar el modal para modificar el precio del producto

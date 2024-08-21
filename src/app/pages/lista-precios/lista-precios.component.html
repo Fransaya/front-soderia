@@ -4,6 +4,36 @@
     </div>
 </div>
 
+<div class="container-producto">
+    <button (click)="mostrarFormulario = !mostrarFormulario" class="btn-agregar">Agregar Producto</button>
+
+    <div *ngIf="mostrarFormulario" class="form-producto">
+        <form [formGroup]="formProducto" (ngSubmit)="agregarProducto()">
+            <div class="form-group">
+                <label for="nombreProducto">Nombre del Producto</label>
+                <input type="text" id="nombreProducto" formControlName="nombre" placeholder="Ingrese el nombre">
+                <div *ngIf="formProducto.get('nombre')?.invalid && formProducto.get('nombre')?.touched"
+                    class="text-danger">
+                    El nombre es obligatorio.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="precioProducto">Precio del Producto</label>
+                <input type="number" id="precioProducto" formControlName="precio" placeholder="Ingrese el precio">
+                <div *ngIf="formProducto.get('precio')?.invalid && formProducto.get('precio')?.touched"
+                    class="text-danger">
+                    El precio es obligatorio y debe ser mayor a 0.
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit" [disabled]="formProducto.invalid">Agregar Producto</button>
+        </form>
+    </div>
+</div>
+
+
 <div class="main-content">
     <div class="tables-container">
         <table id="table1">
@@ -21,36 +51,12 @@
                     <td>{{prod.producto}}</td>
                     <td>{{prod.precio}}</td>
                     <td class="actions">
-                        <button type="button" title="Modificar Precio" (click)="modificarPrecio(prod)" class="change-status">
+                        <button type="button" title="Modificar Precio" (click)="modificarPrecio(prod)"
+                            class="change-status">
                             <i class="pi pi-refresh"></i>
                         </button>
-                        <button type="button" title="Eliminar Producto" (click)="eliminarProductoLista()" class="delete">
-                            <i class="pi pi-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table id="table2">
-            <thead>
-                <tr>
-                    <th>Codigo</th>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let prod of productos2">
-                    <td>{{prod.id}}</td>
-                    <td>{{prod.producto}}</td>
-                    <td>{{prod.precio}}</td>
-                    <td class="actions">
-                        <button type="button" title="Cambiar Estado" (click)="modificarPrecio(prod)" class="change-status">
-                            <i class="pi pi-refresh"></i>
-                        </button>
-                        <button type="button" title="Eliminar Pedidos" (click)="eliminarProductoLista()" class="delete">
+                        <button type="button" title="Eliminar Producto" (click)="eliminarProductoLista()"
+                            class="delete">
                             <i class="pi pi-trash"></i>
                         </button>
                     </td>
@@ -65,7 +71,7 @@
                 <label for="precio">Precio</label>
                 <p-inputNumber inputId="integeronly" [(ngModel)]="precioModificado"></p-inputNumber>
                 <div class="container-btn">
-                    <button type="button" class="btn-cancelar" (click)="cancelar()"> 
+                    <button type="button" class="btn-cancelar" (click)="cancelar()">
                         <i class="pi pi-times" style="font-size: 1rem"></i>
                         Cancelar
                     </button>
