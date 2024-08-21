@@ -1,19 +1,30 @@
 <aside class="sidebar" [ngClass]="{'sidebar-collapsed': !isExpanded}">
     <div class="container-inf">
-        <img src="../../../assets/logo-sistema.jpeg" class="img-soderia" alt="Logo del Sistema Synergia">
-        <h2 class="system-name" >Synergia</h2>
+        <img src="../../../../assets/LogoKikon.png" class="img-soderia" alt="Logo del Sistema Synergia">
+        <h2 class="system-name">Synergia</h2>
     </div>
     <nav class="sidebar-nav">
         <ul class="nav-list">
-            <li><a routerLink="/panel/cliente" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-users"></i> <span >Clientes</span></a></li>
-            <li><a routerLink="/panel/ventas" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-money-bill"></i> <span >Ventas</span> </a></li>
-            <li><a routerLink="/panel/recorridos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-map"></i><span >Recorridos</span> </a></li>
-            <li><a routerLink="/panel/usuarios" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-tag"></i><span >Usuarios</span> </a></li>
-            <li><a routerLink="/panel/pedidos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span >Pedidos</span> </a></li>
-            <li><a routerLink="/panel/lista-precios" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span >Lista Precios</span> </a></li>
-
+            <li><a routerLink="/panel/cliente" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-users"></i> <span>Clientes</span></a></li>
+            <li><a routerLink="/panel/ventas" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-money-bill"></i> <span>Ventas</span> </a>
+            </li>
+            <!-- <li><a routerLink="/panel/recorridos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-map"></i><span >Recorridos</span> </a></li> -->
+            <li><a routerLink="/panel/usuarios" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-tag"></i><span>Usuarios</span> </a></li>
+            <li><a routerLink="/panel/pedidos" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span>Pedidos</span>
+                </a></li>
+            <li><a routerLink="/panel/lista-precios" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span>Lista
+                        Precios</span> </a></li>
         </ul>
+        <div class="btn-container">
+            <button type="button" class="btn-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+        </div>
     </nav>
+
     <button class="toggle-button" (click)="toggleSidebar()">
         <i class="pi pi-chevron-left" *ngIf="isExpanded"></i>
         <i class="pi pi-chevron-right" *ngIf="!isExpanded"></i>

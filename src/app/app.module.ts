@@ -42,6 +42,7 @@ import { VentasComponent } from './pages/ventas/ventas.component';
 import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.compo
         VentasComponent,
         RecorridosComponent,
         UsuariosComponent,
-        ListaPreciosComponent
+        ListaPreciosComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,

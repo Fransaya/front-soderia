@@ -10,11 +10,13 @@ import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Aguas de Mesa Delfina' } },
   { path: 'contacto', component: ContactoComponent, data: { title: 'Contacto' } },
   { path: 'login', component: LoginComponent, data: { title: 'Iniciar Sesión' } },
+  { path: 'menu', component:MenuComponent, data: { title: 'Menu' }},
   {
     path: 'panel', component: DashboardComponent, children: [
       { path: '', redirectTo: 'cliente', pathMatch: 'full' }, // Redirige a cliente por defecto

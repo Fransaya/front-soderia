@@ -1,0 +1,132 @@
+.section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 100vh;
+
+    .cont1 {
+        margin-bottom: 20px;
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .user-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .username {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+
+    .cont2 {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        button {
+            width: 200px;
+            height: 100px;
+            font-size: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-items: center;
+            justify-content: center;
+            background-color: #007ad9;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            padding: 15px;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            i {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            &.ventas {
+                background-color: #007ad9;
+
+                &:hover {
+                    background-color: #005bb5;
+                }
+            }
+
+            &.pedidos {
+                background-color: #8e44ad;
+
+                &:hover {
+                    background-color: #732d91;
+                }
+            }
+
+            &.clientes {
+                background-color: #e67e22;
+
+                &:hover {
+                    background-color: #d35400;
+                }
+            }
+
+            &.lista-precios {
+                background-color: #16a085;
+
+                &:hover {
+                    background-color: #12806a;
+                }
+            }
+
+            &.usuarios {
+                background-color: #c0392b;
+
+                &:hover {
+                    background-color: #992d22;
+                }
+            }
+        }
+    }
+
+    .cerrar-sesion {
+        display: flex;
+        position: absolute;
+        bottom: 60px;
+
+        .btn-close-session {
+            width: 180px;
+            height: 50px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+
+            &:hover {
+                background-color: #c0392b;
+                transform: scale(1.05);
+            }
+        }
+    }
+}

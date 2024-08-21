@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -13,7 +14,12 @@ export class FooterComponent implements OnInit {
     this.actualYear= (new Date().getFullYear())  
   }
 
-  constructor(){
+  constructor(private router:Router){
 
+  }
+
+  iniciarSesion(){
+    //! falta valiadar que no este logueado cuando apreta el boton
+    this.router.navigate(['login']);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +13,17 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(){
+  constructor(private router:Router){
 
   }
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  public cerrarSesion(){
+    this.router.navigate(['']);
+
   }
 
 }

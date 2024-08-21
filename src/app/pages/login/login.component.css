@@ -1,5 +1,5 @@
-.ontainer-login{
-    width: 100%;
+.container-login {
+    width: 100vw;
     display: flex;
     margin: 0;
     padding: 0;
@@ -9,14 +9,14 @@
 .container {
     display: flex;
     height: 100vh;
-    width: 100%;
+    max-width: 1920px;
+    width: 100vw; /* Aseguramos que ocupe todo el ancho de la pantalla */
     margin: 0;
     padding: 0;
-
 }
 
 .left-panel, .right-panel {
-    flex: 1;
+    flex: 1 1 50%; /* Forzamos que cada panel ocupe el 50% */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,6 @@
 .left-panel {
     background-color: var(--secondary-color);
     color: white;
-    width: 50%;
 }
 
 .left-panel img {
@@ -36,7 +35,6 @@
 
 .right-panel {
     background-color: white;
-    width: 50%;
 }
 
 .login-box {
@@ -75,7 +73,7 @@ input[type="password"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: var(--orange-color);
+    background-color: var(--organe-color);
     border: none;
     color: white;
     border-radius: 5px;
@@ -84,8 +82,10 @@ button {
 }
 
 button:disabled {
-    background-color: #ccc;
+    background-color: red;
 }
+
+
 
 .error-message {
     font-size: 16px;
@@ -94,4 +94,19 @@ button:disabled {
 
 .error {
     color: red;
+}
+
+.volver{
+    display: flex;
+    margin-top: 25px;
+    text-align: center;
+    justify-content: center;
+    color: var(--organe-color);
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.volver:hover{
+    cursor: pointer;
+    color: var(--secondary-color);
 }

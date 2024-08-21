@@ -108,4 +108,46 @@
     display: none; 
 }
 
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-cerrar-sesion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #ff4d4d; /* Color rojo para la acción de cerrar sesión */
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Hace que el botón ocupe todo el ancho disponible dentro del contenedor */
+    max-width: 400px; /* Ajusta el ancho máximo si es necesario */
+}
+
+.btn-cerrar-sesion {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    font-size: 18px; /* Tamaño del icono */
+}
+
+.btn-cerrar-sesion:hover {
+    background-color: #e60000; /* Un rojo más oscuro al pasar el mouse */
+}
+
+.btn-cerrar-sesion:active {
+    background-color: #cc0000; /* Efecto al presionar */
+    transform: scale(0.98); /* Efecto de clic */
+}
+
+.btn-cerrar-sesion:disabled {
+    background-color: #ccc;
+}
+
+
 

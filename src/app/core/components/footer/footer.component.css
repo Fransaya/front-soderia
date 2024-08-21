@@ -15,11 +15,13 @@
   
   .footer-content {
     display: flex;
-    justify-content: space-between;
     width: 100%;
+
   }
   
   .footer-left {
+    display: flex;
+    justify-content: center;
     flex: 1;
   }
   
@@ -49,3 +51,47 @@
     text-decoration: underline;
   }
   
+  .btn-login{
+    display: flex;
+    position: relative;
+    left: 200px;
+    margin-left: 50px;
+    justify-content: end;
+
+  }
+
+.btn-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: var(--organe-color); /* Color principal del botón */
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Hace que el botón ocupe todo el ancho disponible */
+    max-width: 400px; /* Puedes ajustar el ancho máximo si deseas */
+}
+
+.btn-login button i {
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+    font-size: 18px; /* Tamaño del icono */
+}
+
+.btn-login button:hover {
+    background-color: darken(var(--organe-color), 10%); /* Hace el color más oscuro al pasar el mouse */
+}
+
+.btn-login button:active {
+    background-color: darken(var(--organe-color), 15%); /* Efecto al presionar */
+    transform: scale(0.98); /* Efecto de clic */
+}
+
+.btn-login button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
