@@ -60,6 +60,41 @@ export class VentasComponent implements OnInit {
   ];
   filteredClients:any[]= [];
 
+  productos = [
+  {
+    "id": 1,
+    "nombre": "Botella de Soda 1.5L",
+    "precio": 200
+  },
+  {
+    "id": 2,
+    "nombre": "Bidón de Agua 10L",
+    "precio": 600
+  },
+  {
+    "id": 3,
+    "nombre": "Pack de Gaseosas 500ml (x6)",
+    "precio": 900
+  },
+  {
+    "id": 4,
+    "nombre": "Agua Mineral 1.5L",
+    "precio": 250
+  },
+  {
+    "id": 5,
+    "nombre": "Bidón de Soda 12L",
+    "precio": 850
+  }
+  ]
+
+  productosRespaldo = this.productos;
+
+  inputProducto:string= "";
+
+  productosVentas:any[] = [];
+
+  productoSeleccionados:any[] = [];
   ngOnInit(): void {
     
   }
@@ -107,6 +142,25 @@ export class VentasComponent implements OnInit {
 
   public onClientFilterInput(){
     
+  }
+
+  public filtrarProducto(){
+    const input = this.inputProducto.toLowerCase();
+    console.log("input", input)
+    this.productosVentas = this.productos.filter(producto =>
+      producto.nombre.toLowerCase().includes(input)
+    );  
+    if(input == ""){
+      this.productosVentas=[];
+    }
+    
+    
+  }
+
+  public agregarProducto(producto:any){
+    console.log("producto", producto);
+    
+    this.productoSeleccionados.push(producto);
   }
 
   //TODO: Registrar venta
