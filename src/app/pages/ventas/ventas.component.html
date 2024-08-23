@@ -52,23 +52,29 @@
             </div>
 
         </div>
-        <div class="button">
+        <div class="button-registrar">
             <button type="submit" (submit)="registerSell()">Registrar Venta</button>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre del Producto</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let producto of productoSeleccionados">
-                    <td>{{ producto.nombre }}</td>
-                    <td>{{ producto.precio | currency:'ARS' }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="venta">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del Producto</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productoSeleccionados">
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.precio | currency:'ARS' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="total">
+            <h4>Total Venta: $12030</h4>
+        </div>
+
 
     </div>
 

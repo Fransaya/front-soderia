@@ -256,3 +256,82 @@
     background-color: var(--secondary-color);; 
 }
 
+
+.venta {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.venta table {
+    width: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.venta th, .venta td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.venta thead {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+}
+
+.venta tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.venta tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.venta th {
+    font-size: 16px;
+}
+
+.venta td {
+    font-size: 14px;
+}
+
+.venta td:nth-child(2) {
+    text-align: right;
+}
+
+.venta table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.button-registrar button {
+    background-color: var(--organe-color);
+    color: black;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-registrar button:hover {
+    background-color: darken(var(--organe-color), 10%);
+    transform: translateY(-2px);
+}
+
+.button-registrar button:active {
+    transform: translateY(0);
+}
+
+.button-registrar button:disabled {
+    background-color: lighten(var(--organe-color), 20%);
+    cursor: not-allowed;
+}
+
+
+
