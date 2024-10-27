@@ -1,28 +1,33 @@
-# FrontSoderia
+# Guía de Instalación de Angular en Windows
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.2.
+Sigue estos pasos para configurar Angular en una PC con Windows.
 
-## Development server
+## Paso 1: Instalar Node.js y npm
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Angular requiere Node.js y npm (Node Package Manager) para funcionar. Si no los tienes instalados, sigue estos pasos:
 
-## Code scaffolding
+1. **Descargar Node.js**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+   - Ve a la página oficial de Node.js en [https://nodejs.org/](https://nodejs.org/).
+   - Descarga la última versión estable de Node.js (la versión LTS es recomendable).
+   - Abre el instalador descargado y sigue los pasos de instalación. Asegúrate de habilitar la opción "Add to PATH" durante la instalación.
 
-## Build
+2. **Verificar la instalación**
+   - Abre la consola de Windows (puedes buscar "cmd" o "PowerShell" en el menú de inicio).
+   - Escribe los siguientes comandos para verificar que Node.js y npm se han instalado correctamente:
+     ```bash
+     node -v
+     ```
+     ```bash
+     npm -v
+     ```
+   - Estos comandos deberían devolver las versiones de Node.js y npm. Si ves las versiones, ¡Node.js y npm están correctamente instalados!
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Paso 2: Instalar Angular CLI
 
-## Running unit tests
+Angular CLI (Command Line Interface) es una herramienta que permite crear y gestionar proyectos Angular. Vamos a instalarla globalmente en tu sistema.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# front-soderia
+1. En la consola de Windows, ejecuta el siguiente comando:
+   ```bash
+   npm install -g @angular/cli
+   ```
