@@ -3,7 +3,7 @@
     padding: 20px;
 }
 
-.title{
+.title {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -20,10 +20,10 @@
     content: '';
     position: absolute;
     left: 0;
-    bottom: -5px; /* Puedes ajustar esta distancia según tu preferencia */
+    bottom: -5px;
     width: 100%;
-    height: 2px; /* Puedes ajustar el grosor de la línea */
-    background-color: var(--organe-color); /* Color de la línea */
+    height: 2px;
+    background-color: var(--organe-color);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease-in-out;
@@ -32,6 +32,7 @@
 .title-ventas:hover::after {
     transform: scaleX(1);
 }
+
 /* Estilos de la sección principal */
 .main-content {
     display: flex;
@@ -43,7 +44,8 @@
 /* Estilos para la sección del formulario */
 .form-section {
     flex: 1;
-    min-width: 550px;
+    min-width: 400px;
+    max-width: 450px;
     background: #f9f9f9;
     padding: 15px;
     border-radius: 8px;
@@ -56,52 +58,84 @@
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Incrementa el espacio entre grupos */
+
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #333; /* Mejor contraste */
 }
 
-.form-group input, .form-group select, .form-group textarea {
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    padding: 8px;
+    padding: 12px; /* Aumentar el padding para mayor confort */
     border: 1px solid #ddd;
     border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Añadir sombra */
 }
 
-.container-btn{
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color); /* Color de borde al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+}
+
+.content-table-detalle{
+    max-height: 300px; /* Altura máxima del contenedor */
+    overflow-y: auto;  /* Habilitar scroll vertical */
+    overflow-x: auto;  /* Habilitar scroll horizontal si es necesario */
+    border: 1px solid #ddd;
+}
+
+.cant-unidades-input{
+    max-width: 100px;
+    border: none;
+    text-decoration: none;
+}
+
+.container-btn {
     display: flex;
     justify-content: end;
 }
 
 .register-venta {
-    background-color: var(--organe-color); /* Asegúrate de tener esta variable definida en tu CSS */
+    background-color: rgb(41, 184, 41);
     color: white;
-    font-size: 16px; /* Ajusta el tamaño de fuente si es necesario */
+    font-size: 16px;
     font-weight: 600;
-    border-radius: 15px;
-    margin: 10px;
-    padding: 10px;
+    border-radius: 8px; /* Redondear más el botón */
+    margin: 10px 0; /* Margen vertical */
+    padding: 12px 20px; /* Espaciado interno */
     border: none;
-    max-width: 550px;
-    text-align: center; /* Centra el texto dentro del botón */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Añade transición para el hover */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
 }
 
 .register-venta:hover {
-    background-color: var(--secondary-color); /* Cambia el color al pasar el ratón */
-    transform: scale(1.05); /* Escala el botón ligeramente al pasar el ratón */
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
 }
 
-.register-venta:focus {
-    outline: none; /* Quita el borde del foco si no lo deseas */
+.cancelar-venta{
+    background-color:red;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px; /* Redondear más el botón */
+    margin: 10px 0; /* Margen vertical */
+    padding: 12px 20px; /* Espaciado interno */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-right: 10px;
 }
-
-
 
 .client-list {
     list-style: none;
@@ -136,6 +170,10 @@
 .tabla {
     margin-top: 20px;
     overflow-x: auto;
+     max-height: 700px; /* Altura máxima del contenedor */
+    overflow-y: auto;  /* Habilitar scroll vertical */
+    overflow-x: auto;  /* Habilitar scroll horizontal si es necesario */
+    border: 1px solid #ddd; 
 }
 
 .ventas-table {
@@ -144,7 +182,8 @@
     font-size: 0.9rem;
 }
 
-.ventas-table th, .ventas-table td {
+.ventas-table th,
+.ventas-table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
@@ -155,35 +194,7 @@
     color: white;
 }
 
-
-
-/* Estilos responsivos */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
-    }
-
-    .form-section, .table-section {
-        min-width: 100%;
-    }
-}
-
-/* filtro de ventas */
-.filtro-ventas {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    margin-bottom: 20px;
-}
-
-.titulo-filtro {
-    text-align: right;
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-    color: var(--primary-color); /* Asegúrate de definir esta variable */
-}
-
+/* Estilos de filtros */
 .filtro-container {
     display: flex;
     flex-wrap: wrap;
@@ -193,78 +204,83 @@
 .filtro-item {
     flex: 1;
     min-width: 200px;
-}
-
-.section-filter-2{
+    max-width: 300px;
     display: flex;
-    gap: 15px;
+    flex-direction: column; /* Para alinear el label y el input verticalmente */
 }
 
 .filtro-item label {
-    display: block;
-    font-weight: bold;
     margin-bottom: 5px;
-    margin-right: 5px;
+    font-weight: bold;
+    color: #333;
 }
 
 .filtro-item input[type="text"],
 .filtro-item input[type="date"],
 .filtro-item select {
-    width: 100%;
-    padding: 8px;
+    padding: 12px; /* Aumentar el padding para mayor comodidad */
     border: 1px solid #ccc;
     border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Añadir sombra */
 }
 
-.dropdown-list {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    max-height: 150px;
-    overflow-y: auto;
-    position: absolute;
-    background-color: white;
-    width: 100%;
-    margin-top: 5px;
-    list-style: none;
-    padding: 0;
-    z-index: 1000;
+.filtro-item input[type="text"]:focus,
+.filtro-item input[type="date"]:focus,
+.filtro-item select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
 }
 
-.dropdown-list li {
-    padding: 10px;
-    cursor: pointer;
+/* Estilos específicos para input de fecha y select */
+.filtro-item input[type="date"] {
+    padding: 12px; /* Espaciado interno */
 }
 
-.dropdown-list li:hover {
-    background-color: #f0f0f0;
+.filtro-item select {
+    padding: 12px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco */
+    max-width: 200px;
 }
 
-.filtro-item{
-    display: flex;
-    align-items: center;
-}
-
-.filtro-item button {
-    background-color: var(--organe-color); 
+/* Botón de limpiar */
+.filtro-container button {
+    background-color:red;
     color: white;
     border: none;
-    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+    transition: background-color 0.3s;
+    max-height: 35px;
+    width: 70px;
+    margin: 5px;
+    margin-top: 35px;
 }
 
-.filtro-item button:hover {
-    background-color: var(--secondary-color);; 
+.filtro-container button:hover {
+
+    background-color: var(--secondary-color);
 }
 
-.actions{
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .form-section,
+    .table-section {
+        min-width: 100%;
+    }
+}
+
+/* Estilos generales para botones de acciones */
+.actions {
     display: flex;
     gap: 15px;
 }
 
-/* Estilos generales para los botones */
 .actions button {
     padding: 9px;
     margin: 5px;
@@ -283,7 +299,7 @@
 }
 
 .actions .change-status:hover {
-    background-color:   #a4481d;
+    background-color: #a4481d;
 }
 
 .actions .delete {
@@ -295,32 +311,31 @@
     background-color: #c82333;
 }
 
-  /* Asegurarse de que los íconos estén centrados */
+/* Asegurarse de que los íconos estén centrados */
 .actions i {
     font-size: 1.2em;
 }
 
-  /* estilos de botones modal */
-.container-btn{
+/* Estilos de botones en modal */
+.container-btn {
     display: flex;
     justify-content: end;
 }
 
-.btn-register{
+.btn-register {
     display: flex;
     margin: 10px;
     padding: 10px;
     width: 120px;
     border-radius: 10px;
-    background-color: var(--organe-color);
+    background-color: rgb(41, 184, 41);
     color: white;
     border: none;
     align-items: center;
     gap: 5px;
 }
 
-
-.btn-cancelar{
+.btn-cancelar {
     background-color: #ee1616;
     color: #fff;
     padding: 0.5rem 1rem;
@@ -334,5 +349,18 @@
     align-items: center;
     gap: 5px;
 }
-  
 
+.btn-delete{
+    background-color: #ee1616;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    width: 35px;
+    border-radius: 10px;
+    border: none;
+    align-items: center;
+    gap: 5px;
+}

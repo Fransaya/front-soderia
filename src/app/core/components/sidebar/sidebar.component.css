@@ -1,3 +1,4 @@
+
 .sidebar {
     width: 250px;
     background-color: #001f36;
@@ -148,6 +149,62 @@
 .btn-cerrar-sesion:disabled {
     background-color: #ccc;
 }
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.menu-button i {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+.menu-button:hover {
+    background-color: #0056b3; /* Color de fondo al hacer hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button:active {
+    background-color: #004494; /* Color al hacer click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-button:focus {
+    outline: none; /* Quita el contorno del focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Efecto de focus */
+}
+
+ .user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .user-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .username {
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+        }
+    }
+
+
 
 
 

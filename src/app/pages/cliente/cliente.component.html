@@ -64,6 +64,19 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="idBarrio">Barrio</label>
+                            <select formControlName="idBarrio" id="idBarrio">
+                                <option *ngFor="let barrio of barrios" [value]="barrio.idBarrio">{{ barrio.nombre }}
+                                </option>
+                            </select>
+                            <div class="error-container">
+                                <div *ngIf="clienteForm.get('idBarrio')?.invalid && clienteForm.get('idBarrio')?.touched"
+                                    class="error">
+                                    <span class="error-message">Barrio es requerido.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="direccion">Direccíon</label>
                             <input type="text" formControlName="direccion" id="direccion">
                             <div class="error-container">
@@ -73,16 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="ciudad">Ciudad</label>
-                            <input type="text" formControlName="ciudad" id="ciudad">
-                            <div class="error-container">
-                                <div *ngIf="clienteForm.get('ciudad')?.invalid && clienteForm.get('ciudad')?.touched"
-                                    class="error">
-                                    <span class="error-message">Ciudad es requerida.</span>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="container-btn">
                             <button type="button" class="btn-cancelar" (click)="cancelar()">
                                 <i class="pi pi-times" style="font-size: 1rem"></i>
@@ -97,8 +101,6 @@
                 </div>
             </p-dialog>
         </div>
-        <div class="container-table">
-        </div>
     </div>
     <div class="table-content">
         <table class="customer-table">
@@ -109,7 +111,8 @@
                     <th>Correo Electrónico</th>
                     <th>Teléfono</th>
                     <th>Dirección</th>
-                    <th>Ciudad</th>
+                    <th>Barrio</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -120,12 +123,13 @@
                     <td>{{ cliente.email }}</td>
                     <td>{{ cliente.telefono }}</td>
                     <td>{{ cliente.direccion }}</td>
-                    <td>{{ cliente.ciudad }}</td>
+                    <td>{{ cliente.barrio_nombre }}</td>
+                    <td>{{cliente.estado == 0 ? 'Inactivo' : 'Activo'}}</td>
                     <td>
                         <button type="button" title="Editar" (click)="showUpdate(cliente)" class="btn-action edit"><i
                                 class="pi pi-pencil"></i></button>
-                        <button type="button" title="Eliminar" (click)="deleteClient(cliente.id)"
-                            class="btn-action cancel"><i class="pi pi-trash"></i></button>
+                        <button type="button" title="Eliminar" (click)="deleteClient(cliente.id, cliente)"
+                            class="btn-action cancel"><i class="pi pi-refresh"></i></button>
                     </td>
                 </tr>
             </tbody>

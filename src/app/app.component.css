@@ -3,7 +3,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100vw; /* Asegura que el contenedor ocupe todo el ancho */
 }
 

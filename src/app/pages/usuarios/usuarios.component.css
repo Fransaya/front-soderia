@@ -68,20 +68,61 @@
 }
 
 input[type="date"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.3s ease;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
 }
 
 input[type="date"]:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+input[type="password"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* Espacio para el ícono */
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: #007bff;
+}
+
+
 
 input.ng-invalid.ng-touched {
   border-color: #dc3545;
@@ -283,9 +324,105 @@ input[type="number"]:focus {
     transform: scale(1.1);
 }
 
+.btn-action.password{
+    color: rgb(31, 31, 146);
+}
+
+.btn-action.password:hover{
+    background-color: #ffebee;
+    transform: scale(1.1);
+}
+
 .btn-action:focus {
     outline: none;
 }
+
+/** ESTILOS DE MODAL DE CAMBIAR CONTRASEÑA */
+
+.minimalist-dialog {
+  --dialog-header-bgcolor: var(--organe-color); /* Usa la variable de color */
+  --dialog-header-text-color: #fff;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.user-info h3 {
+  font-size: 1.5rem;
+  color: var(--organe-color); /* Usa la variable de color */
+}
+
+.user-info p {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.minimalist-form {
+  margin-top: 1rem;
+}
+
+.p-field {
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.password-input {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: var(--organe-color);
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  background-color: var(--organe-color); /* Usa la variable de color */
+  color: #fff;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button:hover {
+  background-color: #ff8c00; /* Un tono más oscuro de naranja */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-button:active {
+  background-color: #e67e00;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+.submit-button[disabled] {
+  background-color: #ccc;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
 
 
 

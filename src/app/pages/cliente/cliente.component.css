@@ -67,6 +67,7 @@
     border-radius: 5px;
 }
 
+
 .registrar-cliente{
     display: flex;
     margin-top: 30px;
@@ -98,7 +99,7 @@
 
 
 .btn-register {
-    background-color: #fe5a37;
+    background-color: #4CAF50;
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
@@ -130,6 +131,19 @@ input[type="number"]:focus {
     border-color: #007bff; /* Color del borde cuando está enfocado */
 }
 
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff; /* Color del borde cuando está enfocado */
+}
+
 
 
 .error {
@@ -153,7 +167,7 @@ input[type="number"]:focus {
     padding: 10px;
     width: 120px;
     border-radius: 10px;
-    background-color: var(--organe-color);
+    background-color: #4CAF50;
     color: white;
     border: none;
     align-items: center;
@@ -248,6 +262,14 @@ input[type="number"]:focus {
 .btn-action:focus {
     outline: none;
 }
+
+.table-content {
+    max-height: 700px; /* Altura máxima del contenedor */
+    overflow-y: auto;  /* Habilitar scroll vertical */
+    overflow-x: auto;  /* Habilitar scroll horizontal si es necesario */
+    border: 1px solid #ddd; /* Opcional: agregar un borde alrededor del contenedor */
+}
+
 
 
 

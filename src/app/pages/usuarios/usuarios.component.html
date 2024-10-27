@@ -1,4 +1,5 @@
 <section class="section">
+    <p-toast></p-toast>
     <div class="container-inf">
         <div class="title">
             <h1 class="title-clientes">Usuarios</h1>
@@ -25,9 +26,7 @@
                         <select id="filter-rol" (change)="filterClients()" [(ngModel)]="filter.rol"
                             class="select-filter">
                             <option value="">Seleccionar rol</option>
-                            <option value="administrador">Administrador</option>
-                            <option value="produccion">Producción</option>
-                            <option value="repartidor">Repartidor</option>
+                            <option *ngFor="let rol of roles" [value]="rol.id">{{rol.nombre}}</option>
                         </select>
                     </div>
 
@@ -35,16 +34,32 @@
             </div>
         </div>
         <div class="container-modal">
-            <p-dialog header="Nuevo Usuario" [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
+            <p-dialog header=`` [modal]="true" [(visible)]="visible" [style]="{ width: '50rem' }">
                 <div class="container-form">
                     <form [formGroup]="usuarioForm" class="formulario" (ngSubmit)="registerClient()">
                         <div class="form-group">
-                            <label for="nombre">Nombre y Apellido</label>
-                            <input type="text" formControlName="nombre" id="nombre">
+                            <label for="alias">Nombre de Usuario</label>
+                            <input type="text" formControlName="alias" id="alias">
                             <div class="error-container">
-                                <div *ngIf="usuarioForm.get('nombre')?.invalid && usuarioForm.get('nombre')?.touched"
+                                <div *ngIf="usuarioForm.get('alias')?.invalid && usuarioForm.get('alias')?.touched"
                                     class="error">
-                                    <span class="error-message">Nombre es requerido.</span>
+                                    <span class="error-message">El usuario es requerido.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="!editUser">
+                            <label for="password">Contraseña</label>
+                            <div class="password-container">
+                                <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+                                    id="password">
+                                <i [class]="showPassword ? 'pi pi-eye-slash' : 'pi pi-eye'" class="password-toggle"
+                                    (click)="togglePasswordVisibility()"></i>
+                            </div>
+                            <div class="error-container">
+                                <div *ngIf="usuarioForm.get('password')?.invalid && usuarioForm.get('password')?.touched"
+                                    class="error">
+                                    <span class="error-message">La contraseña es requerida y debe tener minimo 6
+                                        caracteres.</span>
                                 </div>
                             </div>
                         </div>
@@ -70,11 +85,9 @@
                         </div>
                         <div class="form-group">
                             <label for="rol">Rol</label>
-                            <select formControlName="rol" id="rol" class="select-filter">
+                            <select id="rol" formControlName="idRol" class="select-filter">
                                 <option value="">Seleccionar rol</option>
-                                <option value="administrador">Administrador</option>
-                                <option value="produccion">Produccion</option>
-                                <option value="repartidor">Repartidor</option>
+                                <option *ngFor="let rol of roles" [value]="rol.id">{{rol.nombre}}</option>
                             </select>
                             <div class="error-container">
                                 <div *ngIf="usuarioForm.get('rol')?.invalid && usuarioForm.get('rol')?.touched"
@@ -87,8 +100,8 @@
                             <label for="estado">Estado</label>
                             <select formControlName="estado" id="estado" class="select-filter">
                                 <option value="">Seleccionar estado</option>
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
+                                <option value="1">Activo</option>
+                                <option value="0">Inactivo</option>
                             </select>
                             <div class="error-container">
                                 <div *ngIf="usuarioForm.get('estado')?.invalid && usuarioForm.get('estado')?.touched"
@@ -100,7 +113,8 @@
 
                         <div class="form-group">
                             <label for="fechaNacimiento">Fecha Nacimiento</label>
-                            <input type="date" name="fechaNacimiento" id="fechaNacimiento">
+                            <input type="date" formControlName="fechaNacimiento" name="fechaNacimiento"
+                                id="fechaNacimiento">
                         </div>
                         <div class="container-btn">
                             <button type="button" class="btn-cancelar" (click)="cancelar()">
@@ -109,7 +123,7 @@
                             </button>
                             <button type="submit" *ngIf="!editUser" class="btn-register"><i
                                     class="pi pi-check"></i>Registrar</button>
-                            <button type="button" *ngIf="editUser" (click)="updateClient()" class="btn-register"><i
+                            <button type="button" *ngIf="editUser" (click)="updateUser()" class="btn-register"><i
                                     class="pi pi-check"></i>Editar</button>
                         </div>
                     </form>
@@ -134,21 +148,74 @@
             </thead>
             <tbody>
                 <tr *ngFor="let usuario of usuarios">
-                    <td>{{usuario.id}}</td>
-                    <td>{{ usuario.nombre }}</td>
+                    <td>{{usuario.idUser}}</td>
+                    <td>{{ usuario.alias }}</td>
                     <td>{{ usuario.email }}</td>
                     <td>{{ usuario.telefono }}</td>
-                    <td>{{ usuario.rol.tipo }}</td>
-                    <td>{{ usuario.estado.tipo }}</td>
+                    <td>{{ usuario.rol }}</td>
+                    <td>{{ usuario.estado }}</td>
                     <td>
                         <button type="button" title="Editar" (click)="showUpdate(usuario)" class="btn-action edit"><i
                                 class="pi pi-pencil"></i></button>
-                        <button type="button" title="Eliminar" (click)="deleteClient(usuario.id)"
-                            class="btn-action cancel"><i class="pi pi-trash"></i></button>
+                        <button type="button" title="Modificar Estado" (click)="deleteUser(usuario)"
+                            class="btn-action cancel"><i class="pi pi-sync"></i></button>
+                        <button type="button" class="btn-action password" (click)="showUpdatePassword(usuario)"><i
+                                class="pi pi-key"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <p-dialog header="Cambiar Contraseña" [(visible)]="showEditPassword" [modal]="true" [style]="{ width: '40vw' }"
+        [draggable]="false" [resizable]="false" class="minimalist-dialog">
+        <!-- Información del Usuario en la parte superior del modal -->
+        <div class="user-info" *ngIf="userSelected">
+            <h3>Usuario: {{ userSelected.alias }}</h3>
+            <p>Email: {{ userSelected.email }}</p>
+            <p>Telefono: {{ userSelected.telefono }}</p>
+        </div>
+
+        <!-- Formulario para cambiar la contraseña -->
+        <form [formGroup]="passwordForm" (ngSubmit)="updatePasswordUser()">
+            <div class="p-fluid minimalist-form">
+                <!-- Campo de la nueva contraseña -->
+                <div class="p-field">
+                    <label for="password">Nueva Contraseña</label>
+                    <input id="password" type="password" pInputText formControlName="password" class="password-input" />
+                    <small class="p-error"
+                        *ngIf="passwordForm.controls?.['password']?.errors?.['required'] && passwordForm.controls?.['password']?.touched">
+                        La contraseña es obligatoria.
+                    </small>
+                    <small class="p-error"
+                        *ngIf="passwordForm.controls?.['password']?.errors?.['minlength'] && passwordForm.controls?.['password']?.touched">
+                        Debe tener al menos 6 caracteres.
+                    </small>
+                </div>
+
+                <!-- Confirmar nueva contraseña -->
+                <div class="p-field">
+                    <label for="confirmPassword">Confirmar Nueva Contraseña</label>
+                    <input id="confirmPassword" type="password" pInputText formControlName="confirmPassword"
+                        class="password-input" />
+                    <small class="p-error"
+                        *ngIf="passwordForm.controls?.['confirmPassword']?.errors?.['required'] && passwordForm.controls?.['confirmPassword']?.touched">
+                        Confirmar contraseña es obligatorio.
+                    </small>
+                    <small class="p-error"
+                        *ngIf="passwordForm.errors?.['mismatch'] && passwordForm.controls?.['confirmPassword']?.touched">
+                        Las contraseñas no coinciden.
+                    </small>
+                </div>
+
+                <!-- Botón para restablecer la contraseña -->
+                <div class="p-field button-container">
+                    <button type="submit" label="Restablecer" [disabled]="passwordForm.invalid"
+                        class="submit-button">Restablecer</button>
+                </div>
+
+            </div>
+        </form>
+    </p-dialog>
 
 </section>

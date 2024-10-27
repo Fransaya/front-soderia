@@ -8,37 +8,33 @@
     <div class="form-section">
         <form [formGroup]="ventasForm" class="formulario">
             <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" *ngIf="!isAdmin" id="inputUserVenta" formControlName="usuario">
+                <select id="usuario" *ngIf="isAdmin" formControlName="usuario">
+                    <option value="">Seleccionar usuario</option>
+                    <option *ngFor="let usuario of usuarios" [value]="usuario.idUser">{{ usuario.alias }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="cliente">Cliente</label>
                 <input type="text" id="cliente" formControlName="cliente" (input)="onClientInput()"
                     (blur)="onClientBlur()" />
                 <ul *ngIf="filteredClients.length > 0" class="client-list">
-                    <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.name }}</li>
+                    <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.nombre }}</li>
                 </ul>
-            </div>
-
-            <div class="form-group">
-                <label for="usuario">Usuario</label>
-                <select id="usuario" formControlName="usuario">
-                    <option value="">Seleccionar usuario</option>
-                    <option *ngFor="let usuario of usuarios" [value]="usuario.id">{{ usuario.name }}</option>
-                </select>
             </div>
 
             <div class="form-group">
                 <label for="metodoPago">Método de Pago</label>
                 <select id="metodoPago" formControlName="metodoPago">
-                    <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.name }}</option>
+                    <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.nombre }}</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="fecha">Fecha</label>
                 <input id="fecha" formControlName="fecha" type="date" />
-            </div>
-
-            <div class="form-group">
-                <label for="hora">Hora</label>
-                <input id="hora" formControlName="hora" type="time" />
             </div>
         </form>
 
@@ -60,19 +56,31 @@
                 <thead>
                     <tr>
                         <th>Nombre del Producto</th>
+                        <th>Cantidad Unidades</th>
                         <th>Precio</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let producto of productoSeleccionados">
+                    <tr *ngFor="let producto of productoSeleccionados; let i = index">
                         <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.precio | currency:'ARS' }}</td>
+                        <td><input type="number" name="cantUnidades" id="cantUnidaes" (input)="calcularTotal()"
+                                [(ngModel)]="producto.cantidadUnidades" placeholder="Cantidad Unidades"></td>
+                        <td>
+                            {{ producto.cantidadSeleccionada === null || producto.cantidadSeleccionada === 0 ?
+                            (producto.precio | currency:'ARS') :
+                            (producto.precio * producto.cantidadUnidades | currency:'ARS')
+                            }}
+                        </td>
+                        <td>
+                            <button type="button" (click)="eliminarProducto(i)"><i class="pi pi-trash"></i></button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="total">
-            <h4>Total Venta: $12030</h4>
+            <h4>Total Venta: {{totalVenta}}</h4>
         </div>
 
 
@@ -126,9 +134,9 @@
                     <tr>
                         <th>Cliente</th>
                         <th>Fecha</th>
-                        <th>Hora</th>
                         <th>Usuario</th>
-                        <th>Método de Pago</th>
+                        <th>Total</th>
+                        <th>Detalle</th>
                     </tr>
                 </thead>
                 <tbody>

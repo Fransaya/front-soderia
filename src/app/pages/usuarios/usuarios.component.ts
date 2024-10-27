@@ -1,17 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { RolesService } from '../../core/services/roles/roles.service';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css'
+  styleUrl: './usuarios.component.css',
+  providers: [MessageService]
 })
 export class UsuariosComponent implements OnInit {
 
     usuarioForm: FormGroup;
 
+    passwordForm:FormGroup;
+
     visible: boolean = false;
+
+    showEditPassword:boolean = false;
+
+    showPassword:boolean = false;
 
     editUser:boolean = false;
 
@@ -21,139 +31,254 @@ export class UsuariosComponent implements OnInit {
       rol: ''
     };
 
-  //! eliminar cuando se obtengan los clientes de la base de datos
-  usuarios = [
-    {
-      id:1,
-      nombre: "Juan Perez",
-      email: "juan.perez@example.com",
-      telefono: "1234567890",
-      rol: {id:1, tipo:"Administrador"},
-      estado: {id:1, tipo:"Activo"},
-      fechaNacimiento: "1990-01-01",
-    },
-    {
-      id:2,
-      nombre: "Ana Gomez",
-      email: "ana.gomez@example.com",
-      telefono: "0987654321",
-      rol: {id:1, tipo:"Produccion"},
-      estado: {id:1, tipo:"Activo"},
-      fechaNacimiento: "1990-01-01",
-    },
-    {
-      id:3,
-      nombre: "Carlos Lopez",
-      email: "carlos.lopez@example.com",
-      telefono: "111222333",
-      rol: {id:1, tipo:"Produccion"},
-      estado: {id:1, tipo:"Inactivo"},
-      fechaNacimiento: "1990-01-01",
-    },
-    {
-      id:4,
-      nombre: "Lucia Rodriguez",
-      email: "lucia.rodriguez@example.com",
-      telefono: "333222111",
-      rol: {id:1, tipo:"Repartidor"},
-      estado: {id:2, tipo:"Inactivo"},
-      fechaNacimiento: "1990-01-01",
-    },
-    {
-      id:5,
-      nombre: "Pedro Fernandez",
-      email: "pedro.fernandez@example.com",
-      telefono: "444555666",
-      rol: {id:1, tipo:"Repartidor"},
-      estado: {id:2, tipo:"Activo"},
-      fechaNacimiento: "1990-01-01",
-    }
-  ];
+    // guardo el usuario seleccionado para recuperar datos
+    userSelected:any = null;
+
+  
+    // array de usuarios
+    usuarios:any[] = [];
+    usuariosCopia:any[] = [];
+    // array de roles
+    roles:any[] = [];
 
   ngOnInit(): void {
-    
+    // llamo metodo para obtener usuarios
+    this.getAllUsers();
+    // metodo para obtener los roles
+    this.getAllRoles();
   }
 
-  constructor( private fb: FormBuilder ){
+  constructor( private fb: FormBuilder, private userService:AuthService, private roleService:RolesService, private messageService: MessageService ){
+    // formulario del usuario
     this.usuarioForm = this.fb.group({
-      nombre: ['', Validators.required],
+      alias: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
-      rol: [''],
-      estado: [''],
+      idRol: [''],
+      estado: ['1'],
       fechaNacimiento: ['', Validators.required],
       // Agrega más campos según tus necesidades
     });
+
+    // formulario para cambiar la clave
+    this.passwordForm = this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]],  // Para confirmar la contraseña
+    }, { validator: this.passwordMatchValidator });
   };
 
-   //TODO: MOSTRAR MODAL DE MODIFICAR/CREAR
+    //todo: Validador personalizado para confirmar contraseñas
+    passwordMatchValidator(g: FormGroup) {
+      return g.get('password')?.value === g.get('confirmPassword')?.value
+        ? null : { mismatch: true };
+    }
+
+    //todo: mostrar y ocultar clave
+    togglePasswordVisibility() {
+        this.showPassword = !this.showPassword;
+    }
+
+   //todo: MOSTRAR MODAL DE MODIFICAR/CREAR
     showDialog() {
       this.visible = true;
       this.editUser=false;
     }
 
-    //TODO: OCULTAR MODAL DE MODIFICAR / CREAR
+    //todo: OCULTAR MODAL DE MODIFICAR / CREAR
     cancelar(){
       this.visible=false;
       this.usuarioForm.reset();
     }
 
-    //TODO: FILTROS DE  CLIENTES
-    public filterClients(){ //! falta hacer logica para distingir el filtrado de clientes
-      //**ver si se puede realizar logica de filtrado en el back o directamente hacer desde el frontned */
+    //todo: FILTROS DE  CLIENTES
+    public filterClients(){ 
+      this.usuarios = [...this.usuariosCopia];
 
+      // Filtrar por id si el filtro no está vacío
+      if(this.filter.id !== "") {
+          this.usuarios = this.usuarios.filter((usuario:any) => usuario.idUser == this.filter.id);
+      }
+
+      // Filtrar por nombre si el filtro no está vacío
+      if(this.filter.nombre !== "") {
+          this.usuarios = this.usuarios.filter((usuario:any) => usuario.alias.toLowerCase().includes(this.filter.nombre.toLowerCase()));
+      }
+
+      // Filtrar por rol si el filtro no está vacío
+      if(this.filter.rol !== "") {
+          this.usuarios = this.usuarios.filter((usuario:any) => usuario.idRol == this.filter.rol);
+      }
     }
 
-    //TODO: REGISTRAR CLIENTE
+    //todo: OBTENER TODOS LOS ROLES
+    private getAllRoles(){
+      this.roleService.getRoles().subscribe({
+        next: (response:any)=>{
+          this.roles = response;
+        },
+        error: (error:any)=>{
+          console.log(error);
+        }
+      });
+    }
+    //todo: OBTENER TODOS LOS USUARIOS
+    private getAllUsers(){
+      this.userService.getAllUsers().subscribe({
+        next: (response:any)=>{
+          // console.log("data", response)
+          this.usuarios = response;
+          this.usuariosCopia = [...this.usuarios];
+        },
+        error: (error:any)=>{
+          console.log(error);
+        }
+      })
+    }
+
+    //todo: REGISTRAR CLIENTE
     public registerClient(){
+      console.log("valor form", this.usuarioForm.value)
+      if(this.usuarioForm.valid){
+        this.userService.createUser(this.usuarioForm.value).subscribe({
+          next: (response:any)=>{
+            console.log("response", response)
+            Swal.fire({
+              title:"Usuario creado correctamente",
+              text:"",
+              timer:2000,
+              showCancelButton:false,
+              showConfirmButton:false,
+              icon:"success"
+            });
+            this.getAllUsers();
+            this.cancelar();
+          },
+          error: (error:any)=>{
+            console.log(error);
+          }
+        })
+      }
 
     }
 
-    //TODO: MOSTRAR MODIFICAR CLIENTE
+    //todo: MOSTRAR MODIFICAR CLIENTE
     public showUpdate(usuario:any){
       this.visible=true;
       this.editUser=true;
+      this.userSelected=usuario;
 
-      const rolMap:any = {
-        '1': 'administrador',
-        '2': 'produccion',
-        '3': 'repartidor'
-      };
-    
-      const estadoMap:any = {
-        '1': 'activo',
-        '2': 'inactivo'
-      };
-    
       this.usuarioForm.patchValue({
-        nombre: usuario.nombre,
+        alias: usuario.alias, 
         email: usuario.email,
         telefono: usuario.telefono,
-        rol: rolMap[usuario.rol.id], // Mapea el id al valor correcto
-        estado: estadoMap[usuario.estado.id] // Mapea el id al valor correcto
+        idRol: usuario.idRol, // Mapea el id al valor correcto
+        estado: usuario.estado == 'Activo' ? 1 : 0, // Mapea el id al valor correcto
+        fechaNacimiento:new Date(usuario.fecha_nacimiento).toISOString().split('T')[0]
       });
       
     }
 
-    //TODO: MODIFICAR CLIENTE
-    public updateClient(){
+    //todo: MODIFICAR CLIENTE
+    public updateUser(){
       this.visible=true;
       this.editUser=true;
+      
+        this.userService.updateUser(this.userSelected.idUser, this.usuarioForm.value).subscribe({
+          next: (response:any)=>{
+            Swal.fire({
+              title:"Usuario actualizado correctamente",
+              text:"",
+              timer:2000,
+              showCancelButton:false,
+              showConfirmButton:false,
+              icon:"success"
+            });
+            this.getAllUsers();
+            this.cancelar();
+          },
+          error: (error:any)=>{
+            console.log(error);
+            this.messageService.add({
+              severity: 'error', 
+              summary: 'Error al actualizar usuario', 
+              detail: error.error.message, 
+              life: 2000 // Esto controla el tiempo que el mensaje estará visible (en milisegundos)
+            });
+          }
+        })
+    };
+
+    //todo: MOSTRAR MODIFICAR CONTASEÑA
+    public showUpdatePassword(usuario:any){
+      this.showEditPassword=true;
+      this.userSelected=usuario;
+    }
+
+    //todo: CAMBIAR CLAVE DEL USUARIO
+    public updatePasswordUser(){
+      if(this.passwordForm.valid){
+        let password = this.passwordForm.get('password')?.value;
+        this.userService.updatePassword(this.userSelected.idUser, password).subscribe({
+          next: (response:any)=>{
+            console.log("response", response);
+            this.messageService.add({
+              severity: 'success',
+              summary: response.message,
+              detail: '',
+              life: 2000 // Esto controla el tiempo que el mensaje estará visible (en milisegundos)
+            });
+            this.getAllUsers();
+            this.passwordForm.reset();
+            setTimeout(()=>{
+              this.showEditPassword=false;
+            },2000)
+          },
+          error: (error:any)=>{
+            console.log(error);
+          }
+        });
+      }
     }
 
     
-    //TODO: ELIMINAR CLIENTE
-    public deleteClient(id:number){
+    //todo: desactivar cliente
+    public deleteUser(usuario:any){
       Swal.fire({
-        title:"Desea desactivar el usuario?",
+        title:`Desea ${usuario.estado == 'Activo' ? 'Desactivar' : 'Activar'} el usuario?`,
         text:"",
         timer:5000,
         showCancelButton:true,
         showConfirmButton:true,
         cancelButtonText:"Cancelar",
-        confirmButtonText:"Desactivar",
+        confirmButtonText:`${usuario.estado == 'Activo' ? 'Desactivar' : 'Activar'}`,
         confirmButtonColor:"#dc3545",
         cancelButtonColor:"#79ae92"
+      }).then((result:any)=>{
+        if(result.isConfirmed){
+          usuario.estado = usuario.estado == 'Activo' ? 0 : 1;
+          let nuevoEstado = usuario.estado == 1 ? 'Activo' : 'Inactivo';
+
+          //formateo de fecha
+          usuario.fecha_nacimiento = new Date(usuario.fecha_nacimiento).toISOString().split('T')[0];
+
+          this.userService.updateUser(usuario.idUser, usuario).subscribe({
+            next: (response:any)=>{
+              Swal.fire({
+                title:`Usuario ${nuevoEstado} correctamente`,
+                text:"",
+                timer:1000,
+                showCancelButton:false,
+                showConfirmButton:false,
+                icon:"success"
+              });
+              this.getAllUsers();
+            },
+            error: (error:any)=>{
+              console.log(error);
+            }
+          })
+        }
       });
     }
 

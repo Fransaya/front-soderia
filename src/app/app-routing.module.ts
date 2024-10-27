@@ -11,6 +11,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
 import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { protectionGuard } from './core/guard/protection.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', data: { title: 'Aguas de Mesa Delfina' } },
@@ -20,12 +21,12 @@ const routes: Routes = [
   {
     path: 'panel', component: DashboardComponent, children: [
       { path: '', redirectTo: 'cliente', pathMatch: 'full' }, // Redirige a cliente por defecto
-      { path: 'cliente', component: ClienteComponent, data: { title: 'Cliente' } },
-      { path: 'ventas', component: VentasComponent, data: { title: 'Productos' } },
-      { path: 'recorridos', component: RecorridosComponent, data: { title: 'Recorridos' } },
-      { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
-      { path: 'pedidos', component: PedidosComponent, data: { title: 'Pedidos' } },
-      { path: 'lista-precios', component:ListaPreciosComponent, data:{title: 'Lista de Precios'}}
+      { path: 'cliente', component: ClienteComponent, canActivate:[protectionGuard], data: { title: 'Cliente' } },
+      { path: 'ventas', component: VentasComponent, canActivate:[protectionGuard], data: { title: 'Productos' } },
+      { path: 'recorridos', component: RecorridosComponent, canActivate:[protectionGuard], data: { title: 'Recorridos' } },
+      { path: 'usuarios', component: UsuariosComponent, canActivate:[protectionGuard], data: { title: 'Usuarios' } },
+      { path: 'pedidos', component: PedidosComponent, canActivate:[protectionGuard], data: { title: 'Pedidos' } },
+      { path: 'lista-precios', component:ListaPreciosComponent, canActivate:[protectionGuard], data:{title: 'Lista de Precios'}}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

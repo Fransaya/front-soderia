@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { UtilsService } from '../../core/services/utils/utils.service';
+import { AuthService } from '../../core/services/auth/auth.service';
+import { ClientesService } from '../../core/services/clientes/clientes.service';
+import { ProductosService } from '../../core/services/productos/productos.service';
 
 @Component({
   selector: 'app-ventas',
@@ -11,82 +15,15 @@ export class VentasComponent implements OnInit {
 
   ventasForm:FormGroup;
 
-  ventasData=[
-    {
-      "cliente": "Juan Pérez",
-      "fecha": "2024-07-22",
-      "hora": "14:30",
-      "usuario": "Usuario 1",
-      "metodoPago": "Efectivo"
-    },
-    {
-      "cliente": "María García",
-      "fecha": "2024-07-23",
-      "hora": "09:00",
-      "usuario": "Usuario 2",
-      "metodoPago": "Transferencia"
-    },
-    {
-      "cliente": "Carlos Rodríguez",
-      "fecha": "2024-07-24",
-      "hora": "11:45",
-      "usuario": "Usuario 3",
-      "metodoPago": "Débito"
-    }
-  ];
+  ventasData:any[] = [];
 
-  clients = [
-    { id: 1, name: 'Juan Pérez', contact: 'juan@example.com', phone: '123456789' },
-    { id: 2, name: 'María García', contact: 'maria@example.com', phone: '987654321' },
-    { id: 3, name: 'Carlos Rodríguez', contact: 'carlos@example.com', phone: '456789123' },
-    // Agrega más clientes según sea necesario
-  ];
+  clients:any[] = [];
 
-  usuarios = [
-    { id: 1, name: 'Usuario 1' },
-    { id: 2, name: 'Usuario 2' },
-    { id: 3, name: 'Usuario 3' },
-    { id: 4, name: 'Usuario 4' },
-    { id: 5, name: 'Usuario 5' }
-  ];
+  usuarios:any[] = [];
 
-  metodosPago = [
-    { id: 'efectivo', name: 'Efectivo' },
-    { id: 'transferencia', name: 'Transferencia' },
-    { id: 'debito', name: 'Débito' },
-    { id: 'credito', name: 'Crédito' },
-    { id: 'cheque', name: 'Cheque' },
-    { id: 'otro', name: 'Otro' }
-  ];
   filteredClients:any[]= [];
 
-  productos = [
-  {
-    "id": 1,
-    "nombre": "Botella de Soda 1.5L",
-    "precio": 200
-  },
-  {
-    "id": 2,
-    "nombre": "Bidón de Agua 10L",
-    "precio": 600
-  },
-  {
-    "id": 3,
-    "nombre": "Pack de Gaseosas 500ml (x6)",
-    "precio": 900
-  },
-  {
-    "id": 4,
-    "nombre": "Agua Mineral 1.5L",
-    "precio": 250
-  },
-  {
-    "id": 5,
-    "nombre": "Bidón de Soda 12L",
-    "precio": 850
-  }
-  ]
+  productos:any[] = [];
 
   productosRespaldo = this.productos;
 
@@ -95,31 +32,52 @@ export class VentasComponent implements OnInit {
   productosVentas:any[] = [];
 
   productoSeleccionados:any[] = [];
+
+  metodosPago:any[] = [];
+
+  totalVenta:number = 0;
+
+  isAdmin:boolean=false;
+
   ngOnInit(): void {
+    this.getMetodosPago();
+    this.validateUser();
+    this.getClientes();
+    this.resetForm();
+    this.obtenerProductos();
     
   }
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private utilsService:UtilsService, private userService: AuthService, private clienteService: ClientesService,
+    private productosService:ProductosService
+  ){
 
-    const usuarioCreador = 1
-    const metodoPagoPredeterminado = 'efectivo';
 
     this.ventasForm = this.fb.group({
+      idCliente:[0, Validators.required],
       cliente: ['', Validators.required],
       fecha: ['', [Validators.required, Validators.email]],
-      hora: ['', Validators.required],
-      usuario: [usuarioCreador, Validators.required],
-      metodoPago: [metodoPagoPredeterminado, Validators.required],
+      usuario: ['', Validators.required],
+      metodoPago: ['', Validators.required],
       total: ['', Validators.required],
       notaAdicional:[''],
     });
+
+    
+  }
+
+  //* iniciarlizar formulario con la fecha de hoy
+  public resetForm(){
+    const fechaActual = new Date().toISOString().split('T')[0];
+    this.ventasForm.reset();
+    this.ventasForm.get('fecha')?.setValue(fechaActual);
   }
 
   //! FUNCIONES ADICIONALES DE CLIENTES
   onClientInput() {
     const input = this.ventasForm.get('cliente')?.value.toLowerCase();
     this.filteredClients = this.clients.filter(client =>
-      client.name.toLowerCase().includes(input)
+      client.nombre.toLowerCase().includes(input)
     );
   }
 
@@ -131,7 +89,8 @@ export class VentasComponent implements OnInit {
   }
 
   selectClient(client:any) {
-    this.ventasForm.get('cliente')?.setValue(client.name);
+    this.ventasForm.get('cliente')?.setValue(client.nombre);
+    this.ventasForm.get('idCliente')?.setValue(client.id);
     this.filteredClients = [];
   }
 
@@ -146,25 +105,110 @@ export class VentasComponent implements OnInit {
 
   public filtrarProducto(){
     const input = this.inputProducto.toLowerCase();
-    console.log("input", input)
     this.productosVentas = this.productos.filter(producto =>
       producto.nombre.toLowerCase().includes(input)
     );  
     if(input == ""){
       this.productosVentas=[];
     }
-    
-    
+  };
+
+  // eliminar productos de la lista
+  public eliminarProducto(indice:number){
+    this.productoSeleccionados.splice(indice, 1);
   }
+
+  //* validacion de usuario para seleccion
+  public validateUser(){
+    let idUser = localStorage.getItem("idUser");
+    // valido el tipo de usuario
+    this.userService.getUserById(Number(idUser)).subscribe({
+      next:(res:any)=>{
+        if(res[0].idRol == 1){
+          this.isAdmin = true;
+          this.ventasForm.patchValue({usuario: res[0].idUser});
+          this.getAllUsers();
+        }else{
+          this.ventasForm.value.usuario = res[0].idUser;
+          let input = document.getElementById('inputUserVenta') as HTMLInputElement;
+          input.value = res[0].alias;
+        };
+      },
+      error:(err:any)=>{
+        console.error("Error al obtener datos del usuario", err);
+      }
+    });
+  };
+
+  //* obtener todos los usuarios
+  public getAllUsers(){
+    this.userService.getAllUsers().subscribe({
+      next:(res:any)=>{
+        this.usuarios = res;
+      },
+      error:(err:any)=>{
+        console.error("Error al obtener datos del usuario", err);
+      }
+    });
+  }
+
+  //* obtener todos los clientes
+  public getClientes(){
+    this.clienteService.getClientesActivos().subscribe({
+      next:(res:any)=>{
+        this.clients = res;
+      },
+      error:(err:any)=>{
+        console.error("Error al obtener datos de los clientes", err);
+      }
+    })
+  }
+
+  //* obtener metodos de pago
+  public getMetodosPago(){
+    this.utilsService.getMetodosPagos().subscribe((resp:any)=>{
+      this.metodosPago = resp;
+      this.metodosPago.forEach((metodo:any)=>{
+          if(metodo.nombre == "Efectivo"){
+            this.ventasForm.patchValue({metodoPago: metodo.id});
+          }
+      })
+    });
+  }
+
+  //* obtener productos
+  public obtenerProductos(){
+    this.productosService.getProductosActivos().subscribe({
+      next:(res:any)=>{
+        // console.log("response", res);
+        this.productos = res;
+      },
+      error:(err:any)=>{
+        console.error("Error al obtener datos de los productos", err);
+      }
+    })
+  }
+
 
   public agregarProducto(producto:any){
-    console.log("producto", producto);
+    // console.log("producto", producto);
     
     this.productoSeleccionados.push(producto);
+    this.calcularTotal();
   }
 
-  //TODO: Registrar venta
+  public calcularTotal(){
+    this.totalVenta = this.productoSeleccionados.reduce((acc, producto) => {
+      const cantidad = producto.cantidadUnidades || 0;
+      return acc + (producto.precio * cantidad);
+    }, 0);
+  }
+
+  //todo: Registrar venta
   public registerSell(){
+    if(this.ventasForm){
+      
+    }
 
   }
 }

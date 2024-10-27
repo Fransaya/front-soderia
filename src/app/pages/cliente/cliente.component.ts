@@ -1,6 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ClientesService } from '../../core/services/clientes/clientes.service';
+import { BarriosService } from '../../core/services/barrios/barrios.service';
+
+export interface Cliente {
+    id: number;
+    nombre: string;
+    email: string;
+    telefono: string;
+    direccion: string;
+    idBarrio: number;
+    barrio_nombre: string;
+    estado: number;
+    observaciones: string | null;
+}
+
 
 @Component({
   selector: 'app-cliente',
@@ -15,126 +30,186 @@ export class ClienteComponent implements OnInit {
 
     editClient:boolean = false;
 
+    idClientSelect:number=0;
+
     filter = {
-      id: '',
+      id: null,
       nombre: '',
       direccion: ''
     };
 
-    //! eliminar cuando se obtengan los clientes de la base de datos
-    clientes = [
-      {
-        id:1,
-        nombre: "Juan Perez",
-        email: "juan.perez@example.com",
-        telefono: "1234567890",
-        direccion: "Calle Falsa 123",
-        ciudad: "Ciudad Ejemplo",
-        codigoPostal: "5000"
-      },
-      {
-        id:2,
-        nombre: "Ana Gomez",
-        email: "ana.gomez@example.com",
-        telefono: "0987654321",
-        direccion: "Avenida Siempreviva 742",
-        ciudad: "Otra Ciudad",
-        codigoPostal: "4000"
-      },
-      {
-        id:3,
-        nombre: "Carlos Lopez",
-        email: "carlos.lopez@example.com",
-        telefono: "111222333",
-        direccion: "Boulevard de los Sueños 456",
-        ciudad: "Ciudad Fantasía",
-        codigoPostal: "3000"
-      },
-      {
-        id:4,
-        nombre: "Lucia Rodriguez",
-        email: "lucia.rodriguez@example.com",
-        telefono: "333222111",
-        direccion: "Calle de la Luna 789",
-        ciudad: "Ciudad Luna",
-        codigoPostal: "2000"
-      },
-      {
-        id:5,
-        nombre: "Pedro Fernandez",
-        email: "pedro.fernandez@example.com",
-        telefono: "444555666",
-        direccion: "Calle del Sol 321",
-        ciudad: "Ciudad Sol",
-        codigoPostal: "1000"
-      }
-    ];
+    clientes:Cliente[] = [];
 
+    barrios:any[] = [];
+
+    
 
     ngOnInit(): void {
+      this.getClientes();
+      this.getBarrios();
     }
 
-    constructor(private fb: FormBuilder){
+    constructor(private fb: FormBuilder, private clienteService:ClientesService, private barriosService:BarriosService){
       this.clienteForm = this.fb.group({
         nombre: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         telefono: ['', Validators.required],
         direccion: [''],
-        ciudad: [''],
-        codigoPostal: ['']
-        // Agrega más campos según tus necesidades
+        idBarrio: [null],
+        estado: [1]
       });
     };
 
-    //TODO: MOSTRAR MODAL DE MODIFICAR/CREAR
+
+    //todo: MOSTRAR MODAL DE MODIFICAR/CREAR
     showDialog() {
         this.visible = true;
         this.editClient=false;
     }
 
-    //TODO: OCULTAR MODAL DE MODIFICAR / CREAR
+    //todo: OCULTAR MODAL DE MODIFICAR / CREAR
     cancelar(){
       this.visible=false;
       this.clienteForm.reset();
     }
 
-    //TODO: FILTROS DE  CLIENTES
-    public filterClients(){ //! falta hacer logica para distingir el filtrado de clientes
-      //**ver si se puede realizar logica de filtrado en el back o directamente hacer desde el frontned */
-
+    //todo: FILTROS DE  CLIENTES
+    public filterClients(){ 
+      // console.log("entro al filtro")
+      if(this.filter.id){
+        this.clienteService.getClienteId(this.filter.id).subscribe({
+          next: (data:any) => {
+            this.clientes = data;
+          },
+          error: (error) => {
+            console.error('Error al obtener los clientes:', error);
+          }
+        })
+      }else if(this.filter.nombre){
+        this.clientes = this.clientes.filter(cliente => cliente.nombre.toLowerCase().includes(this.filter.nombre.toLowerCase()));
+      }else if(this.filter.direccion){
+        this.clientes = this.clientes.filter(cliente => cliente.direccion.toLowerCase().includes(this.filter.direccion.toLowerCase()));
+      }else{
+        this.getClientes()
+      }
     }
 
-    //TODO: REGISTRAR CLIENTE
+    //todo OBTENER BARRIOS
+    public getBarrios(){
+      this.barriosService.getBarrios().subscribe({
+        next: (data) => {
+          this.barrios = data;
+
+        },
+        error: (error) => {
+          console.error('Error al obtener los barrios:', error);
+        }
+      })
+    } 
+
+    //todo: OBTENER CLIENTES
+    public getClientes(){
+      this.clienteService.getClientes().subscribe({
+        next: (data) => {
+          // console.log("data",data)
+          this.clientes = data;
+        },
+        error: (error) => {
+          console.error('Error al obtener los clientes:', error);
+        }
+      })
+    }
+
+    //todo: REGISTRAR CLIENTE
     public registerClient(){
+      if(this.clienteForm.valid){
+        this.clienteService.createCliente(this.clienteForm.value).subscribe({
+          next: (data) => {
+            this.getClientes();
+            this.cancelar();
+            Swal.fire({
+              title: 'Cliente creado',
+              text: 'El cliente ha sido creado correctamente',
+              icon: 'success',
+              timer: 3000
+            });
+          },
+          error: (err) => {
+            console.log(" erro al registrar",err)
+            Swal.fire({
+              title: 'Error',
+              text: err.error.message,
+              icon: 'error',
+              timer: 3000,
+              
+            });
+          }
+        })
+      }
 
     }
 
-    //TODO: MOSTRAR MODIFICAR CLIENTE
+    //todo: MOSTRAR MODIFICAR CLIENTE
     public showUpdate(cliente:any){
       this.visible=true;
       this.editClient=true;
+      this.idClientSelect=cliente.id;
       this.clienteForm.patchValue(cliente)
     }
 
-    //TODO: MODIFICAR CLIENTE
+    //todo: MODIFICAR CLIENTE
     public updateClient(){
       this.visible=true;
       this.editClient=true;
+      this.clienteService.updateCliente(this.idClientSelect, this.clienteForm.value).subscribe({
+        next: (data) => {
+          this.getClientes();
+          this.cancelar();
+          Swal.fire({
+            title: 'Cliente modificado',
+            text: 'El cliente ha sido modificado correctamente',
+            icon: 'success',
+            timer: 3000
+          });
+        },
+        error: (error) => {
+          console.error('Error al modificar el cliente:', error);
+        }
+      })
     }
 
     
-    //TODO: ELIMINAR CLIENTE
-    public deleteClient(id:number){
+    //todo: ELIMINAR CLIENTE
+    public deleteClient(id:number, cliente:any){
       Swal.fire({
-        title:"Desea eliminar el cliente?",
-        text:"perdera todos los datos del mismo",
+        title:"Desea Cambiar el estado del cliente?",
+        text:`pasara a estar ${cliente.estado == 0 ? 'Activado' : 'Desactivado'}`,
         timer:5000,
-        showCancelButton:true,
         showConfirmButton:true,
+
+        showCancelButton:true,
+        confirmButtonText:`${cliente.estado == 0 ? 'Activar' : 'Desactivar'}`,
         cancelButtonText:"Cancelar",
-        confirmButtonText:"Eliminar",
-        confirmButtonColor:"#dc3545",
-        cancelButtonColor:"#79ae92"
+        confirmButtonColor:"#43cd29",
+        cancelButtonColor:"#ee0f0f"
+      }).then((result)=>{
+        if(result.isConfirmed){
+          cliente.estado = cliente.estado == 0 ? 1 : 0;
+          this.clienteService.updateCliente(id, cliente).subscribe({
+            next: (data) => {
+              this.getClientes();
+              Swal.fire({
+                title: 'Cliente Actualizado',
+                text: 'El estado del cliente fue actualizado',
+                icon: 'success',
+                timer: 3000
+              });
+            },
+            error: (error) => {
+              console.error('Error al actualizar el cliente:', error);
+            }
+          })
+        }
       });
     }
 }

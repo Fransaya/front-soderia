@@ -4,24 +4,20 @@
         <h2 class="system-name">Synergia</h2>
     </div>
     <nav class="sidebar-nav">
-        <ul class="nav-list">
-            <li><a routerLink="/panel/cliente" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-users"></i> <span>Clientes</span></a></li>
-            <li><a routerLink="/panel/ventas" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-money-bill"></i> <span>Ventas</span> </a>
-            </li>
-            <!-- <li><a routerLink="/panel/recorridos" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-map"></i><span >Recorridos</span> </a></li> -->
-            <li><a routerLink="/panel/usuarios" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-tag"></i><span>Usuarios</span> </a></li>
-            <li><a routerLink="/panel/pedidos" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span>Pedidos</span>
-                </a></li>
-            <li><a routerLink="/panel/lista-precios" routerLinkActive="active-link"
-                    [routerLinkActiveOptions]="{exact: true}"><i class="pi pi-shopping-cart"></i><span>Lista
-                        Precios</span> </a></li>
+        <ul class="nav-list" *ngFor="let modulo of modulos">
+            <li><a routerLink="/panel/{{modulo.rutaModulo}}" routerLinkActive="active-link"
+                    [routerLinkActiveOptions]="{exact: true}"><i class="{{modulo.icono}}"></i>
+                    <span>{{modulo.nombreModulo}}</span></a></li>
         </ul>
+        <div class="user-info">
+            <img src="../../../assets/user-photo2.jpg" alt="Foto de usuario" class="user-photo">
+            <span class="username">{{usuario?.alias}}</span>
+        </div>
+        <div class="menu">
+            <button type="button" class="menu-button" routerLink="/menu"><i class="pi pi-bars"></i></button>
+        </div>
         <div class="btn-container">
-            <button type="button" class="btn-cerrar-sesion" (click)="cerrarSesion()">Cerrar Sesión</button>
+            <button type="button" class="btn-cerrar-sesion" (click)="cerrarSesion()"><i class="pi pi-lock"></i></button>
         </div>
     </nav>
 

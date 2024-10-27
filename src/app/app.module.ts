@@ -21,6 +21,8 @@ import { TimelineModule } from 'primeng/timeline';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CarouselModule } from 'primeng/carousel';
 import { ToastModule } from 'primeng/toast';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { AppComponent } from './app.component';
 import { RouterOutlet } from '@angular/router';
@@ -43,6 +45,7 @@ import { RecorridosComponent } from './pages/recorridos/recorridos.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { ListaPreciosComponent } from './pages/lista-precios/lista-precios.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { ProductListDemoComponent } from './pages/pedidos/product-list-demo/product-list-demo.component';
 
 @NgModule({
     declarations: [
@@ -61,7 +64,8 @@ import { MenuComponent } from './pages/menu/menu.component';
         RecorridosComponent,
         UsuariosComponent,
         ListaPreciosComponent,
-        MenuComponent
+        MenuComponent,
+        ProductListDemoComponent
     ],
     imports: [
         BrowserModule,
@@ -89,7 +93,9 @@ import { MenuComponent } from './pages/menu/menu.component';
         CarouselModule,
         MessagesModule,
         AccordionModule,
-        ToastModule
+        ToastModule,
+        DynamicDialogModule,
+        PaginatorModule
     ],
     providers: [ConfirmationService],
     bootstrap: [AppComponent]
