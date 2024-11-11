@@ -20,6 +20,12 @@ export class PedidosComponent implements OnInit, OnDestroy {
   pediosForm:FormGroup;
   // valor seleccionado para buscar por fecha de pedido
   fechaPedido:any;
+  // fecha desde para buscar los pedidos cuando se buscan en todos
+  fechaDesde:Date= new Date();
+  // fecha hasta para buscar los pedidos cuando se buscan en todos
+  fechaHasta:Date= new Date();
+  // variable para mostrar modal de filtro con rango de fechas
+  showRangeDateFilter:boolean= false;
   // variable para mostrar modal de modificar estado pedido
   visible: boolean = false;
   // almacena el pedido seleccionado para guardar sus valores provicionalmente ( cuandos se hacer modificaciones )
@@ -133,6 +139,9 @@ export class PedidosComponent implements OnInit, OnDestroy {
       this.fechaPedido = fechaActual;
       this.getPedidosByDate(fechaActual);
       this.estadoSelect.nativeElement.value = '';
+      this.showRangeDateFilter = false;
+      this.fechaDesde = new Date();
+      this.fechaHasta = new Date();
     }
 
     // filtrar cliente en la busqueda de pedido
@@ -245,7 +254,7 @@ export class PedidosComponent implements OnInit, OnDestroy {
     // obtiene pedidos por fecha
     public filterDate(event:any){
       let fecha = event.target.value;
-      this.pedidoService.getPedidosParams(fecha, null, null).subscribe({
+      this.pedidoService.getPedidosParams(fecha, null, null, null, null).subscribe({
         next: (res) => {
           this.pedidosData = res;
           this.pedidosCopia = res;
@@ -262,8 +271,10 @@ export class PedidosComponent implements OnInit, OnDestroy {
     public filterEstado(event:any){
       let estado = event.target.value;
       let fecha = this.fechaPedido;
-      if(estado){
-        this.pedidoService.getPedidosParams(fecha, estado, null).subscribe({
+      console.log("estado", estado);  
+      if(estado !== '0'){
+        this.showRangeDateFilter = false;
+        this.pedidoService.getPedidosParams(fecha, estado, null, null, null).subscribe({
           next: (res) => {
             this.pedidosData = res;
             this.pedidosCopia = res;
@@ -275,7 +286,32 @@ export class PedidosComponent implements OnInit, OnDestroy {
             Swal.fire("Error", err.error.message, "error");
           }
         })
+      }else{ // puede obtener todos los pedidos y con una fecha desde y hasta
+        console.log("entro aca")
+        this.showRangeDateFilter = true;
+        
       }
+    }
+
+    public filterByRangeDate(){
+      if(this.fechaDesde && this.fechaHasta && this.fechaDesde <= this.fechaHasta){
+          let fechaDesde = this.fechaDesde;
+          let fechaHasta = this.fechaHasta;
+          this.pedidoService.getPedidosParams(null, null,null, fechaDesde, fechaHasta).subscribe({
+            next: (res) => {
+              this.pedidosData = res;
+              this.pedidosCopia = res;
+            },
+            error: (err) => {
+              console.log(err);
+              this.pedidosCopia = [];
+              this.pedidosData = [];
+              Swal.fire("Error", err.error.message, "error");
+            }
+          })
+        }else{
+          Swal.fire("Error", "La fecha desde no puede ser mayor a la fecha hasta", "error");
+        }
     }
 
   //? -------- METODOS PARA OBTENER DATOS
@@ -306,7 +342,7 @@ export class PedidosComponent implements OnInit, OnDestroy {
 
     // OBTENER PEDIDOS POR FECHA
     public getPedidosByDate(date:any){
-      this.pedidoService.getPedidosParams(date, null, null).subscribe({
+      this.pedidoService.getPedidosParams(date, null, null, null, null).subscribe({
         next: (res) => {
           // console.log("SE LLAMO ACA", res);
           this.pedidosData = res;
@@ -495,13 +531,25 @@ export class PedidosComponent implements OnInit, OnDestroy {
         // mando al backend para eliminar el item del pedido ya registrado
         this.pedidoService.deleteItemPedido(this.pedidoSelect.idPedido, producto).subscribe({
           next:(res:any)=>{
-            Swal.fire({
+            console.log("respuesta al eliminar",res)
+            if(res.status){
+              Swal.fire({
               title: "Exito",
               text: res.message,
               icon: "success",
               timer: 1000,
               showConfirmButton: false,
             });
+            }else{
+              Swal.fire({
+              title: "Atencion",
+              text: res.message,
+              icon: "info",
+              timer: 1000,
+              showConfirmButton: false,
+            });
+            }
+            
           },
           error:(err:any)=>{
             console.error("error al eliminar", err);

@@ -35,10 +35,11 @@ export class ClienteComponent implements OnInit {
     filter = {
       id: null,
       nombre: '',
-      direccion: ''
+      estado: -1
     };
 
     clientes:Cliente[] = [];
+    clientesCopy:Cliente[] = [];
 
     barrios:any[] = [];
 
@@ -55,7 +56,7 @@ export class ClienteComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         telefono: ['', Validators.required],
         direccion: [''],
-        idBarrio: [null],
+        idBarrio: [null, Validators.required],
         estado: [1]
       });
     };
@@ -86,9 +87,16 @@ export class ClienteComponent implements OnInit {
           }
         })
       }else if(this.filter.nombre){
-        this.clientes = this.clientes.filter(cliente => cliente.nombre.toLowerCase().includes(this.filter.nombre.toLowerCase()));
-      }else if(this.filter.direccion){
-        this.clientes = this.clientes.filter(cliente => cliente.direccion.toLowerCase().includes(this.filter.direccion.toLowerCase()));
+        this.clientes = this.clientesCopy.filter(cliente => cliente.nombre.toLowerCase().includes(this.filter.nombre.toLowerCase()));
+      }else if(this.filter.estado){
+        if(this.filter.estado < 0){
+          this.clientes = this.clientesCopy;
+
+        }else{
+          this.clientes = this.clientesCopy.filter(cliente => this.filter.estado ==  cliente.estado);
+
+        }
+
       }else{
         this.getClientes()
       }
@@ -113,6 +121,7 @@ export class ClienteComponent implements OnInit {
         next: (data) => {
           // console.log("data",data)
           this.clientes = data;
+          this.clientesCopy = [...this.clientes];
         },
         error: (error) => {
           console.error('Error al obtener los clientes:', error);

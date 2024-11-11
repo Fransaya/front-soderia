@@ -243,7 +243,7 @@
 }
 
 /* Botón de limpiar */
-.filtro-container button {
+.btn-clear {
     background-color:red;
     color: white;
     border: none;
@@ -258,7 +258,7 @@
     margin-top: 35px;
 }
 
-.filtro-container button:hover {
+.btn-clear button:hover {
 
     background-color: var(--secondary-color);
 }
@@ -364,3 +364,36 @@
     align-items: center;
     gap: 5px;
 }
+
+.filtros-fecha {
+  display: flex;
+  justify-content: end; /* Centra los filtros de fecha y el botón */
+  align-items: center;
+  gap: 10px; /* Espacio entre los elementos */
+  margin-top: 5px;
+}
+
+.filtros-fecha label {
+  margin: 0 5px;
+}
+
+.filtros-fecha input[type="date"]    {
+  padding: 5px 5px;
+  font-size: 14px;
+}
+
+.btn-range-date {
+  background-color: #007bff; /* Color azul suave */
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-range-date:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+}
+

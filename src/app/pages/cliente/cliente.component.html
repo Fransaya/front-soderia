@@ -21,9 +21,12 @@
                         <label for="filter-nombre">Nombre:</label>
                         <input type="text" id="filter-nombre" (input)="filterClients()" [(ngModel)]="filter.nombre">
 
-                        <label for="filter-direccion">Dirección:</label>
-                        <input type="text" id="filter-direccion" (input)="filterClients()"
-                            [(ngModel)]="filter.direccion">
+                        <label for="filter-direccion">Estado:</label>
+                        <select name="estado" [(ngModel)]="filter.estado" id="filter-estado" (change)="filterClients()">
+                            <option value="-1" selected>Todos</option>
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                        </select>
                     </div>
 
                 </div>
@@ -34,8 +37,8 @@
                 <div class="container-form">
                     <form [formGroup]="clienteForm" class="formulario" (ngSubmit)="registerClient()">
                         <div class="form-group">
-                            <label for="nombre">Nombre y Apellido</label>
-                            <input type="text" formControlName="nombre" id="nombre">
+                            <label for="nombre">Nombre y Apellido *</label>
+                            <input type="text" formControlName="nombre" id="nombre" title="El Nombre es requerido">
                             <div class="error-container">
                                 <div *ngIf="clienteForm.get('nombre')?.invalid && clienteForm.get('nombre')?.touched"
                                     class="error">
@@ -44,8 +47,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
-                            <input id="email" formControlName="email" type="email" />
+                            <label for="email">Correo Electrónico *</label>
+                            <input id="email" formControlName="email" type="email"
+                                title="El Correo electronico es requerido" />
                             <div class="error-container">
                                 <div *ngIf="clienteForm.get('email')?.invalid && clienteForm.get('email')?.touched"
                                     class="error">
@@ -54,8 +58,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="telefono">Telefono / Celular</label>
-                            <input id="telefono" formControlName="telefono" type="text" />
+                            <label for="telefono">Telefono / Celular *</label>
+                            <input id="telefono" formControlName="telefono" type="text"
+                                title="El Telefono/Celular es requerido" />
                             <div class="error-container">
                                 <div *ngIf="clienteForm.get('telefono')?.invalid && clienteForm.get('telefono')?.touched"
                                     class="error">
@@ -64,8 +69,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="idBarrio">Barrio</label>
-                            <select formControlName="idBarrio" id="idBarrio">
+                            <label for="idBarrio">Barrio *</label>
+                            <select formControlName="idBarrio" id="idBarrio" title="El Barrio es requerido">
                                 <option *ngFor="let barrio of barrios" [value]="barrio.idBarrio">{{ barrio.nombre }}
                                 </option>
                             </select>
@@ -128,8 +133,8 @@
                     <td>
                         <button type="button" title="Editar" (click)="showUpdate(cliente)" class="btn-action edit"><i
                                 class="pi pi-pencil"></i></button>
-                        <button type="button" title="Eliminar" (click)="deleteClient(cliente.id, cliente)"
-                            class="btn-action cancel"><i class="pi pi-refresh"></i></button>
+                        <button type="button" title="Modificar Estado" (click)="deleteClient(cliente.id, cliente)"
+                            class="btn-action cancel"><i class="pi pi-power-off"></i></button>
                     </td>
                 </tr>
             </tbody>

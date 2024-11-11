@@ -18,7 +18,7 @@ export class PedidosService {
   };
 
   // obtener pedidos por querys
-  public getPedidosParams(fecha:any, estado:any, idCliente:any):Observable<any>{
+  public getPedidosParams(fecha:any, estado:any, idCliente:any, fechaDesde:Date | null, fechaHasta:Date | null):Observable<any>{
     const urlApi = environment.const_url_server + endpoints.allPedidos;
     let params = new HttpParams();
     if(fecha != null){
@@ -29,6 +29,10 @@ export class PedidosService {
     }
     if(idCliente != null){
       params = params.append('idCliente', idCliente);
+    }
+    if(fechaDesde != null && fechaHasta != null){
+      params = params.append('fechaDesde', fechaDesde.toString());
+      params = params.append('fechaHasta', fechaHasta.toString());
     }
     return this.http.get(urlApi, {params: params});
   }

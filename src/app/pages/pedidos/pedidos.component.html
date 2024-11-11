@@ -8,7 +8,7 @@
     <div class="form-section">
         <form [formGroup]="pediosForm" class="formulario" (ngSubmit)="registerPedidos()">
             <div class="form-group">
-                <label for="clientePedido">Cliente</label>
+                <label for="clientePedido">Cliente *</label>
                 <input type="text" id="clientePedido" formControlName="cliente" (input)="onClientInput(1)"
                     (blur)="onClientBlur()" />
                 <ul *ngIf="filteredClients.length > 0" class="client-list">
@@ -17,12 +17,12 @@
             </div>
 
             <div class="form-group">
-                <label for="total">Direccion</label>
+                <label for="total">Direccion *</label>
                 <input id="total" formControlName="direccion" type="text" step="0.01" />
             </div>
 
             <div class="form-group">
-                <label for="telefono">Telefono</label>
+                <label for="telefono">Telefono *</label>
                 <input id="total" formControlName="telefono" type="tel" step="0.01" />
             </div>
 
@@ -110,6 +110,16 @@
             </div>
             <button (click)="resetearFiltro()" class="btn-clear" title="Limpiar Filtros"><i
                     class="pi pi-trash"></i></button>
+            <div class="filtros-fecha" *ngIf="showRangeDateFilter">
+                <label for="fechaDesde">Desde:</label>
+                <input type="date" id="fechaDesde" [(ngModel)]="fechaDesde">
+
+                <label for="fechaHasta">Hasta:</label>
+                <input type="date" id="fechaHasta" [(ngModel)]="fechaHasta">
+
+                <button (click)="filterByRangeDate()" class="btn-range-date">Filtrar</button>
+            </div>
+
         </div>
         <div class="tabla">
             <table class="ventas-table">
