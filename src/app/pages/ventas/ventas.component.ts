@@ -39,6 +39,8 @@ export class VentasComponent implements OnInit {
 
   isAdmin:boolean=false;
 
+  showVentas:boolean=false;
+
   ngOnInit(): void {
     this.getMetodosPago();
     this.validateUser();

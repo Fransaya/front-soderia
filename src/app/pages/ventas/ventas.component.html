@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div class="main-content">
+<div class="main-content" *ngIf="showVentas">
     <div class="form-section">
         <form [formGroup]="ventasForm" class="formulario">
             <div class="form-group">
@@ -151,4 +151,9 @@
             </table>
         </div>
     </div>
+</div>
+<div class="enConstruccion">
+    <img src="../../../assets/img-construccion.webp" alt="Construcción">
+    <h1>¡Sitio en Construcción!</h1>
+    <p>Estamos trabajando para ofrecerte una mejor experiencia. Vuelve pronto para ver las novedades.</p>
 </div>

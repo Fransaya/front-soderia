@@ -333,5 +333,35 @@
     cursor: not-allowed;
 }
 
+.enConstruccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #f3f4f6;
+    color: #333;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.enConstruccion img {
+    width: 250px; /* Ajusta el tamaño según lo necesites */
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.enConstruccion h1 {
+    font-size: 2rem;
+    margin: 10px 0;
+}
+
+.enConstruccion p {
+    font-size: 1rem;
+    color: #555;
+    max-width: 500px;
+}
+
+
 
 
