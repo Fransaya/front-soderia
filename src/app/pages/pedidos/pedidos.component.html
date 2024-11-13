@@ -9,21 +9,29 @@
         <form [formGroup]="pediosForm" class="formulario" (ngSubmit)="registerPedidos()">
             <div class="form-group">
                 <label for="clientePedido">Cliente *</label>
-                <input type="text" id="clientePedido" formControlName="cliente" (input)="onClientInput(1)"
-                    (blur)="onClientBlur()" />
+                <input type="text" id="clientePedido" formControlName="cliente" (input)="onClientInput(1)" />
                 <ul *ngIf="filteredClients.length > 0" class="client-list">
                     <li *ngFor="let client of filteredClients" (click)="selectClient(client)">{{ client.nombre }}</li>
                 </ul>
+                <div *ngIf="pediosForm.get('cliente')?.invalid && pediosForm.get('cliente')?.touched">
+                    <small class="error-text">El campo Cliente es requerido.</small>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="total">Direccion *</label>
                 <input id="total" formControlName="direccion" type="text" step="0.01" />
+                <div *ngIf="pediosForm.get('direccion')?.invalid && pediosForm.get('direccion')?.touched">
+                    <small class="error-text">El campo Dirección es requerido.</small>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="telefono">Telefono *</label>
                 <input id="total" formControlName="telefono" type="tel" step="0.01" />
+                <div *ngIf="pediosForm.get('telefono')?.invalid && pediosForm.get('telefono')?.touched">
+                    <small class="error-text">El campo Teléfono es requerido.</small>
+                </div>
             </div>
 
             <div class="form-group">

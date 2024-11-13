@@ -397,3 +397,18 @@
   background-color: #0056b3; /* Azul más oscuro al hacer hover */
 }
 
+/* Estilo general para el texto de error */
+.error-text {
+    color: #d9534f; /* Un tono rojo claro para indicar error */
+    font-size: 0.875rem; /* Tamaño un poco más pequeño */
+    margin-top: 4px;
+    display: block;
+}
+
+/* Opcional: resaltar el borde del campo de entrada cuando hay error */
+input.ng-invalid.ng-touched {
+    border-color: #d9534f;
+    box-shadow: 0 0 5px rgba(217, 83, 79, 0.5); /* Pequeño resplandor rojo */
+}
+
+

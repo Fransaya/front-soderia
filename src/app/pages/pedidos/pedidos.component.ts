@@ -152,14 +152,6 @@ export class PedidosComponent implements OnInit, OnDestroy {
       );
     }
 
-    // funcionalidad para cliente
-    onClientBlur() {
-      // Si la lista está vacía, limpia el campo
-      if (this.filteredClients.length === 0) {
-        this.pediosForm.get('cliente')?.setValue('');
-      }
-    }
-
     // filtro de clientes en lista de pedidos
     public onClientFilterInput(parameterBusqueda:number, event:any){
       // obtento el valor de la busqueda
